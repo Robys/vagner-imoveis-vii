@@ -3,7 +3,7 @@ import {compareTwoStrings} from 'string-similarity'
 
 export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
 
-export function AddHouses(address,code,num,neighbor,city,postalCode,construction,type,size,rooms,parking,price,description,gallery){
+export function AddHouses({address,code,num,neighbor,city,postalCode,construction,type,size,rooms,parking,price,description,gallery}){
 
    return axios.post(`${DATA_URL}/houses`,{address:address,
    code:code,

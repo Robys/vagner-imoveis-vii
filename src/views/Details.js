@@ -97,17 +97,32 @@ export default function Details (props){
                         <Typography variant="h6">
                             {data.city}
                         </Typography>
-                        <p><DialpadIcon fontSize="small"/> código: {data.code}</p>
-                        <p><HomeWorkIcon fontSize="small"/> tipo: {data.construction}</p>
-                        <p><DescriptionIcon fontSize="small"/> para {data.type}</p>
-                        <p><LocationOnIcon fontSize="small"/> endereço: {data.address} - CEP: {data.postalCode}</p>
-                        <p><AspectRatioIcon fontSize="small"/> metragem: {data.size}</p>
-                        <p> <MeetingRoomIcon fontSize="small"/> quartos: {data.rooms}</p>
-                        <p><DriveEtaIcon fontSize="small"/> vagas p/ garagem: {data.parking}</p>
+
+                        <p><DialpadIcon fontSize="small"/> Código: {data.code}</p>
+                        <p><HomeWorkIcon fontSize="small"/> Tipo: {data.construction}</p>
+
+                        <ul className="detail-list">
+                            <li>
+                            <p><AspectRatioIcon fontSize="small"/> Metragem: {data.size}</p>
+                            </li>
+                            <li>
+                            <p> <MeetingRoomIcon fontSize="small"/> Quartos: {data.rooms}</p>
+                            </li>
+                            <li>
+                            <p><DriveEtaIcon fontSize="small"/> Vagas: {data.parking}</p>
+                            </li>
+                            
+
+                        </ul>
+                    
+                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address} - CEP: {data.type}</p>
+                        
+                        
+                        
                         <p>{data.description}</p>
                         
                         <Typography variant="h4">
-                            R$: {data.price}
+                            R$  {data.price}
                         </Typography>
 
                         <Button variant="contained" color="primary" href="/contact">

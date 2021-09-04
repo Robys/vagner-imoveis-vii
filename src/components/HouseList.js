@@ -74,7 +74,7 @@ export default function HouseList(){
         },
       }
       const OnSaveEdit = () =>{
-        axios.put(`${DATA_URL}/houses/${selectedID}`,{
+        axios.patch(`${DATA_URL}/houses/${selectedID}`,{
                 address: address,
                 code:code,
                 num:num,

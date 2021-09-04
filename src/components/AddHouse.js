@@ -109,7 +109,21 @@ export default function AddHouse(){
             const response = res.data.gallery
             setTimeout(()=>{
 
-              AddHouses(adr,code,num,neig,cty,construction,type,postalCode,rooms,size,parking,price,description,response);
+              AddHouses({
+                address:adr,
+                code:code,
+                num:num,
+                neighbor:neig,
+                city:cty,
+                postalCode:postalCode,
+                construction:construction,
+                type:type,
+                size:size,
+                rooms:rooms,
+                parking:parking,
+                price:price,
+                description:description,
+                gallery:gallery});
             },1500)
             setOk(true);
           })
