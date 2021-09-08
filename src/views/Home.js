@@ -5,6 +5,7 @@ import axios from 'axios'
 import {DATA_URL,SearchFilter,SortFunction,SortContruction,SortType} from '../api'
 import {Container,Paper,Typography, IconButton,InputBase,Button} from '@material-ui/core'
 import SearchIcon  from '@material-ui/icons/Search'
+import {Skeleton} from '@material-ui/lab'
 
 export default function Home(){
     const [data,setData] = useState()

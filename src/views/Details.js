@@ -10,7 +10,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import Footer from '../components/Footer'
 import axios from 'axios'
 import {DATA_URL} from '../api'
-
+import {Skeleton} from '@material-ui/lab'
 
 export default function Details (props){
     const [data,setData] = useState()
