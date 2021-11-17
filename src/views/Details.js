@@ -40,7 +40,7 @@ export default function Details (props){
 
     useEffect(()=>{
         const getHouse = async () =>{
-           await axios.get(`${DATA_URL}/houses/${_id}`)  
+           await axios.get(`${DATA_URL}`)  
             .then(res => setData(res.data))
 
         }

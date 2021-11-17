@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {Paper,Button,TextField,TextareaAutosize,Snackbar} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
-import {AddHouses} from '../api'
+import {ADDHOUSE} from '../api'
 import axios from 'axios'
 
 import {DATA_URL} from '../api'
@@ -19,11 +19,12 @@ export default function AddHouse(){
     const [neighbor,setNeighbor]=useState()
     const [city,setCity]=useState()
     const [rooms,setRooms]=useState()
+    const [bathroom,setBathrooms]=useState()
     const [parking,setParking]=useState()
     const [price,setPrice]=useState()
     const [size,setSize]=useState()
+    const [finality,setFinality]=useState()
     const [type,setType]=useState()
-    const [construction,setConstruction]=useState()
     const [description,setDescription]=useState()
 
     const [gallery,setGallery] = useState([])
@@ -109,17 +110,18 @@ export default function AddHouse(){
             const response = res.data.gallery
             setTimeout(()=>{
 
-              AddHouses({
+              ADDHOUSE({
                 address:adr,
                 code:code,
                 num:num,
                 neighbor:neig,
                 city:cty,
                 postalCode:postalCode,
-                construction:construction,
+                finality:finality,
                 type:type,
                 size:size,
                 rooms:rooms,
+                bathroom:bathroom,
                 parking:parking,
                 price:price,
                 description:description,
@@ -155,10 +157,10 @@ export default function AddHouse(){
               type="text" label="Metragem" placeholder="123x321"onChange={e=>setSize(e.target.value)}/>
 
               <TextField style={Styles.input}
-              type="text" label="Tipo de Imóvel" placeholder="casa/apartamento"onChange={e=>setConstruction(e.target.value)}/>
+              type="text" label="Tipo de Imóvel" placeholder="casa/apartamento"onChange={e=>setType(e.target.value)}/>
 
               <TextField style={Styles.input}
-              type="text" label="Finalidade" placeholder="venda/aluguel"onChange={e=>setType(e.target.value)}/>
+              type="text" label="Finalidade" placeholder="venda/aluguel"onChange={e=>setFinality(e.target.value)}/>
 
               <TextField style={Styles.input}
               id="bairro" 
@@ -175,6 +177,9 @@ export default function AddHouse(){
 
               <TextField style={Styles.input}
               type="number" label="Comodos" onChange={e=>setRooms(e.target.value)}/>
+
+              <TextField style={Styles.input}
+              type="number" label="Banheiros" onChange={e=>setBathrooms(e.target.value)}/>
 
               <TextField style={Styles.input}
               type="number" label="Vagas p/ carros" onChange={e=>setParking(e.target.value)}/>

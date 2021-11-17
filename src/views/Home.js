@@ -14,7 +14,7 @@ export default function Home(){
 
       useEffect(()=>{
           const getHouses = async () =>{
-              const res = await axios.get(`${DATA_URL}/houses`)
+              const res = await axios.get(`${DATA_URL}`)
               console.log(res)
               setData(res)
 
@@ -125,18 +125,8 @@ export default function Home(){
             </Container>
   
             <Container className="home-content">
-
-            {result !== undefined?
-              <div>
-                <Typography variant="h6" >Resultados sobre {keyword}</Typography>
-                <hr style={{margin:"40px",width:"250px"}}/>
-                {result.map(house => <House key={house.id} house={house}/>)}
-                <hr style={{margin:"40px",width:"250px"}}/>
-              </div>
-                 : ""}
-
-              {data !== undefined ? data.data.map(house => <House key={house.id} house={house}/> ) : "" }
-              
+              {data ? console.log(data):""}
+              {result ? console.log(result):""}
           </Container>
 
           <Footer/>
@@ -147,15 +137,18 @@ export default function Home(){
     
 }
 
+
+
 /**
  * 
- * {result ?
+ * {result !== undefined?
               <div>
                 <Typography variant="h6" >Resultados sobre {keyword}</Typography>
-                <hr style={{margin:"40px"}}/>
-                {result.data.search.map(house => <House key={house.id} house={house}/>)}
-                <hr style={{margin:"40px"}}/>
+                <hr style={{margin:"40px",width:"250px"}}/>
+                {result.map(house => <House key={house.id} house={house}/>)}
+                <hr style={{margin:"40px",width:"250px"}}/>
               </div>
                  : ""}
-              {data ? data.data.houses.map(house => <House key={house.id} house={house}/> ) : "" }
+
+              {data !== undefined ? data.data.map(house => <House key={house.id} house={house}/> ) : "" }
  */

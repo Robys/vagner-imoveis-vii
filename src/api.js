@@ -3,33 +3,93 @@ import {compareTwoStrings} from 'string-similarity'
 
 export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
 
-export function AddHouses({address,code,num,neighbor,city,postalCode,construction,type,size,rooms,parking,price,description,gallery}){
+export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description,gallery}){
 
-   return axios.post(`${DATA_URL}/houses`,{address:address,
-   code:code,
-   num: num,
-   neighbor: neighbor,
-   city:city,
-   postalCode:postalCode,
-   rooms:rooms,
-   construction:construction,
-   type:type,
-   size:size,
-   parking:parking,
-   price:price,
-   description:description,
-   gallery: gallery
-})
+   return axios.post(`${DATA_URL}/`,{
+       query:`mutation{
+           addHouse(code:"${code}",
+            type:"${type}",
+            price:"${price}",
+            finality:"${finality}",
+            address:"${address}",
+            city:"${city}",
+            neighbor:"${neighbor}",
+            postalCode:"${postalCode}",
+            number:"${num}",
+            parking:"${parking}",
+            bathroom:"${bathroom}",
+            rooms:"${rooms}",
+            size:"${size}",
+            description:"${description}",
+            gallery:"${gallery}",
+         )
+       }`
+   })
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
     
 }
 
+export const GETHOUSES = async () =>{
+    return await axios.post(`${DATA_URL}`,{
+        query:`query{
+            houses{
+                id
+                code
+                type
+                price
+                finality
+                address
+                city
+                neighbor
+                postalCode
+                number
+                parking
+                bathroom
+                rooms
+                size
+                createdAt
+                description
+                gallery
+
+            }
+        }`
+    }).then(res => res)
+    .catch(err => err)
+}
+
+export const GETHOUSE = async (id) =>{
+    return await axios.post(`${DATA_URL}`,{
+        query:`query{
+            house(id:"${id}"){
+                id
+                code
+                type
+                price
+                finality
+                address
+                city
+                neighbor
+                postalCode
+                number
+                parking
+                bathroom
+                rooms
+                size
+                createdAt
+                description
+                gallery
+
+            }
+        }`
+    }).then(res => res)
+    .catch(err => err)
+}
 
 export async function SearchFilter(keyword){
 
-    const data = await axios.get(`${DATA_URL}/houses`)
+    const data = await GETHOUSES()
     .then(res => res.data)
     .catch(err => err)
 
@@ -74,7 +134,7 @@ export const SortFunction = async (type) =>{
         neighbor: 'neighbor',
       }; 
 
-      const data = await axios.get(`${DATA_URL}/houses`)
+      const data = await GETHOUSES()
     .then(res => res.data)
     .catch(err => err)
 
@@ -85,7 +145,7 @@ export const SortFunction = async (type) =>{
 }
 
 export const SortContruction = async (keyword)=>{
-    const data = await axios.get(`${DATA_URL}/houses`)
+    const data = await GETHOUSES()
     .then(res => res.data)
     .catch(err => err)
 
@@ -97,7 +157,7 @@ export const SortContruction = async (keyword)=>{
 
 export const SortType = async (keyword)=>{
 
-    const data = await axios.get(`${DATA_URL}/houses`)
+    const data = await GETHOUSES()
     .then(res => res.data)
     .catch(err => err)
 
