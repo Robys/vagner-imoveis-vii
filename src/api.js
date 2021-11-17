@@ -65,6 +65,19 @@ export function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finali
     
 }
 
+export function DELETEHOUSE({id}){
+    return axios.post(`${DATA_URL}/graphql`,{
+        query:`mutation{
+            deleteHouse(id:"${id}"){
+                id
+                address
+                finality
+            }
+        }`
+    }).then(res => console.log(res))
+    .catch(err => console.log(err))
+}
+
 export const GETHOUSES = async () =>{
     return await axios.post(`${DATA_URL}/graphql`,{
         query:`query{

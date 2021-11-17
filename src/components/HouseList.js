@@ -17,8 +17,7 @@ import {
     TableRow,
     Paper } from '@material-ui/core'
 
-import axios from 'axios'
-import {GETHOUSES,UPDATEHOUSE} from '../api'
+import {GETHOUSES,UPDATEHOUSE,DELETEHOUSE} from '../api'
 
 export default function HouseList(){
 
@@ -98,10 +97,8 @@ export default function HouseList(){
 
       }
 
-      const onDeleteButton = () =>{
-        axios.delete(`${DATA_URL}/houses/${selectedID}`)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+      const onDeleteButton = async () =>{
+        await DELETEHOUSE(selectedID)
       }
 
 
