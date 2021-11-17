@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import House from '../components/House' 
 import axios from 'axios'
-import {DATA_URL,SearchFilter,SortFunction,SortContruction,SortType} from '../api'
+import {GETHOUSES,SearchFilter,SortFunction,SortContruction,SortType} from '../api'
 import {Container,Paper,Typography, IconButton,InputBase,Button} from '@material-ui/core'
 import SearchIcon  from '@material-ui/icons/Search'
 import {Skeleton} from '@material-ui/lab'
@@ -14,8 +14,7 @@ export default function Home(){
 
       useEffect(()=>{
           const getHouses = async () =>{
-              const res = await axios.get(`${DATA_URL}`)
-              console.log(res)
+              const res = await GETHOUSES()
               setData(res)
 
           }

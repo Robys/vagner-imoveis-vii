@@ -9,7 +9,7 @@ import DialpadIcon from '@material-ui/icons/Dialpad';
 import DescriptionIcon from '@material-ui/icons/Description';
 import Footer from '../components/Footer'
 import axios from 'axios'
-import {DATA_URL} from '../api'
+import {GETHOUSE} from '../api'
 import {Skeleton} from '@material-ui/lab'
 
 export default function Details (props){
@@ -40,7 +40,7 @@ export default function Details (props){
 
     useEffect(()=>{
         const getHouse = async () =>{
-           await axios.get(`${DATA_URL}`)  
+           await GETHOUSE
             .then(res => setData(res.data))
 
         }

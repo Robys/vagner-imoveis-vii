@@ -5,7 +5,7 @@ export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
 
 export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description,gallery}){
 
-   return axios.post(`${DATA_URL}/`,{
+   return axios.post(`${DATA_URL}/graphql`,{
        query:`mutation{
            addHouse(code:"${code}",
             type:"${type}",
@@ -32,7 +32,7 @@ export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,typ
 }
 
 export const GETHOUSES = async () =>{
-    return await axios.post(`${DATA_URL}`,{
+    return await axios.post(`${DATA_URL}/graphql`,{
         query:`query{
             houses{
                 id
@@ -60,7 +60,7 @@ export const GETHOUSES = async () =>{
 }
 
 export const GETHOUSE = async (id) =>{
-    return await axios.post(`${DATA_URL}`,{
+    return await axios.post(`${DATA_URL}/graphql`,{
         query:`query{
             house(id:"${id}"){
                 id
