@@ -39,11 +39,12 @@ export default function HouseList(){
     const [type,setType]=useState()
     const [finality,setFinality]=useState()
     const [description,setDescription]=useState()
+    const [ok, setOk] = useState(false)
 
       useEffect(()=>{
         const getList = async () =>{
             const res = await GETHOUSES()
-            console.log(res)
+            //console.log(res)
             setData(res)
         }
 
@@ -73,7 +74,7 @@ export default function HouseList(){
           margin: '20px',
         },
       }
-      const OnSaveEdit = () =>{
+      const OnSaveEdit = async () =>{
         await UPDATEHOUSE({
           address:address,
           code:code,
@@ -207,7 +208,7 @@ export default function HouseList(){
             </TableHead>
 
             <TableBody>
-            {data ? data.data.map(house => 
+            {data ? data.houses.map(house => 
                 <TableRow key={house.id}>
                     <TableCell align="center"> 
                     <Button variant="contained" color="primary" onClick={e =>{
@@ -242,3 +243,7 @@ export default function HouseList(){
         </Container>
     )
 }
+
+/**
+ *            
+ */

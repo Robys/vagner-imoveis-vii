@@ -124,8 +124,16 @@ export default function Home(){
             </Container>
   
             <Container className="home-content">
-              {data ? console.log(data):""}
-              {result ? console.log(result):""}
+            {result !== undefined?
+              <div>
+                <Typography variant="h6" >Resultados sobre {keyword}</Typography>
+                <hr style={{margin:"40px",width:"250px"}}/>
+                {result.map(house => <House key={house.id} house={house}/>)}
+                <hr style={{margin:"40px",width:"250px"}}/>
+              </div>
+                 : ""}
+
+              {data !== undefined ? data.houses.map(house => <House key={house.id} house={house}/> ) : "" }
           </Container>
 
           <Footer/>

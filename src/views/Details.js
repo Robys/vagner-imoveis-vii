@@ -17,8 +17,6 @@ export default function Details (props){
     //const [photos,setPhotos] = useState()
     const [open,setOpen] = useState() // abre e fecha o modal
     const [modal,setModal] = useState() //seta a imagem a ser mostrada no modal
-    const _id = props.match.params.id
-
 
     const handleOpen = () => {
         setOpen(true);
@@ -40,13 +38,13 @@ export default function Details (props){
 
     useEffect(()=>{
         const getHouse = async () =>{
-           await GETHOUSE
-            .then(res => setData(res.data))
+           const result = await GETHOUSE(props.match.params.id)
+           setData(result.house)
 
         }
         getHouse()
 
-    },[_id])
+    },[])
 
 
     return (
@@ -99,7 +97,7 @@ export default function Details (props){
                         </Typography>
 
                         <p><DialpadIcon fontSize="small"/> Código: {data.code}</p>
-                        <p><HomeWorkIcon fontSize="small"/> Tipo: {data.construction}</p>
+                        <p><HomeWorkIcon fontSize="small"/> Tipo: {data.type}</p>
 
                         <ul className="detail-list">
                             <li>
@@ -115,7 +113,8 @@ export default function Details (props){
 
                         </ul>
                     
-                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address} - CEP: {data.type}</p>
+                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address} - {data.number}
+                        - CEP: {data.postalCode}</p>
                         
                         
                         

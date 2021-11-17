@@ -34,9 +34,9 @@ export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,typ
 
     
 }
-export function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description}){
+export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description}){
 
-   return axios.post(`${DATA_URL}/graphql`,{
+   return await axios.post(`${DATA_URL}/graphql`,{
        query:`mutation{
            updateHouse(id:"${id}",code:"${code}",
             type:"${type}",
@@ -102,7 +102,7 @@ export const GETHOUSES = async () =>{
 
             }
         }`
-    }).then(res => res)
+    }).then(res => res.data.data)
     .catch(err => err)
 }
 
@@ -130,7 +130,7 @@ export const GETHOUSE = async (id) =>{
 
             }
         }`
-    }).then(res => res)
+    }).then(res => res.data.data)
     .catch(err => err)
 }
 
