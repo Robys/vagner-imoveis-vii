@@ -221,8 +221,8 @@ export default function HouseList(){
                     <TableCell align="center">{house.id}</TableCell>
                     {house.code === null ? <TableCell align="center"> nulo </TableCell>
                     :<TableCell align="center">{house.code}</TableCell> }
-                    <TableCell align="center">{house.construction} </TableCell>
                     <TableCell align="center">{house.type} </TableCell>
+                    <TableCell align="center">{house.finality} </TableCell>
                     <TableCell align="center">{house.address} {house.num}</TableCell>
                     <TableCell align="center">{house.neighbor}</TableCell>
                     <TableCell align="center">{house.city}</TableCell>
