@@ -18,7 +18,7 @@ import {
     Paper } from '@material-ui/core'
 
 import axios from 'axios'
-import {DATA_URL} from '../api'
+import {GETHOUSES,UPDATEHOUSE} from '../api'
 
 export default function HouseList(){
 
@@ -33,16 +33,17 @@ export default function HouseList(){
     const [neighbor,setNeighbor]=useState()
     const [city,setCity]=useState()
     const [rooms,setRooms]=useState()
+    const [bathroom,setBathrooms]=useState()
     const [parking,setParking]=useState()
     const [price,setPrice]=useState()
     const [size,setSize]=useState()
     const [type,setType]=useState()
-    const [construction,setConstruction]=useState()
+    const [finality,setFinality]=useState()
     const [description,setDescription]=useState()
 
       useEffect(()=>{
         const getList = async () =>{
-            const res = await axios.get(`${DATA_URL}/houses`)
+            const res = await GETHOUSES()
             console.log(res)
             setData(res)
         }
@@ -74,24 +75,26 @@ export default function HouseList(){
         },
       }
       const OnSaveEdit = () =>{
-        axios.patch(`${DATA_URL}/houses/${selectedID}`,{
-                address: address,
-                code:code,
-                num:num,
-                neighbor:neighbor,
-                city: city,
-                postalCode: postalCode,
-                rooms:rooms,
-                parking:parking,
-                price:price,
-                construction:construction,
-                type:type,
-                size:size,
-                description:description,
-                
-          })
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+        await UPDATEHOUSE({
+          address:address,
+          code:code,
+          num:num,
+          neighbor:neighbor,
+          city:city,
+          postalCode:postalCode,
+          finality:finality,
+          type:type,
+          size:size,
+          rooms:rooms,
+          bathroom:bathroom,
+          parking:parking,
+          price:price,
+          description:description})
+        .then(res => {
+          console.log(res)
+          setOk(true)
+        })
+        .catch(err => console.log(err))
 
       }
 
@@ -145,13 +148,16 @@ export default function HouseList(){
               type="text" label="Metragem" placeholder="123x321"onChange={e=>setSize(e.target.value)}/>
 
               <TextField style={Styles.input}
-              type="text" label="Tipo de Imóvel" placeholder="casa/apartamento"onChange={e=>setConstruction(e.target.value)}/>
+              type="text" label="Tipo de Imóvel" placeholder="casa/apartamento"onChange={e=>setType(e.target.value)}/>
 
               <TextField style={Styles.input}
-              type="text" label="Finalidade" placeholder="venda/aluguel"onChange={e=>setType(e.target.value)}/>
+              type="text" label="Finalidade" placeholder="venda/aluguel"onChange={e=>setFinality(e.target.value)}/>
 
               <TextField style={Styles.input}
               type="number" label="Comodos" onChange={e=>setRooms(e.target.value)}/>
+
+              <TextField style={Styles.input}
+              type="number" label="Banheiros" onChange={e=>setBathrooms(e.target.value)}/>
 
               <TextField style={Styles.input}
               type="number" label="Vagas p/ carros" onChange={e=>setParking(e.target.value)}/>

@@ -22,7 +22,41 @@ export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,typ
             size:"${size}",
             description:"${description}",
             gallery:"${gallery}",
-         )
+         ){
+             id
+             address
+             finality
+         }
+       }`
+   })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
+    
+}
+export function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description}){
+
+   return axios.post(`${DATA_URL}/graphql`,{
+       query:`mutation{
+           updateHouse(id:"${id}",code:"${code}",
+            type:"${type}",
+            price:"${price}",
+            finality:"${finality}",
+            address:"${address}",
+            city:"${city}",
+            neighbor:"${neighbor}",
+            postalCode:"${postalCode}",
+            number:"${num}",
+            parking:"${parking}",
+            bathroom:"${bathroom}",
+            rooms:"${rooms}",
+            size:"${size}",
+            description:"${description}"
+         ){
+             id
+             address
+             finality
+         }
        }`
    })
     .then(res => console.log(res))

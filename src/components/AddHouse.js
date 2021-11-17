@@ -96,21 +96,17 @@ export default function AddHouse(){
 
       }
 
-
-      
-      
       const SubmitForm = async (e) =>{
         e.preventDefault()
         const adr = document.getElementById('logradouro').value
         const neig = document.getElementById('bairro').value
         const cty = document.getElementById('localidade').value
-        
-        axios.post(`${DATA_URL}/galleries`,{gallery})
-          .then(res => {
-            const response = res.data.gallery
-            setTimeout(()=>{
 
-              ADDHOUSE({
+        setTimeout(()=>{
+
+        },1500)
+
+        await ADDHOUSE({
                 address:adr,
                 code:code,
                 num:num,
@@ -125,13 +121,13 @@ export default function AddHouse(){
                 parking:parking,
                 price:price,
                 description:description,
-                gallery:gallery});
-            },1500)
-            setOk(true);
-          })
-          .catch(err => console.log(err))
+                gallery:gallery})
+              .then(res => {
+                console.log(res)
+                setOk(true)
+              })
+              .catch(err => console.log(err))
 
-        
       }
 
   return (
