@@ -137,7 +137,7 @@ export const GETHOUSE = async (id) =>{
 export async function SearchFilter(keyword){
 
     const data = await GETHOUSES()
-    .then(res => res.data)
+    .then(res => res.houses)
     .catch(err => err)
 
     
@@ -182,7 +182,7 @@ export const SortFunction = async (type) =>{
       }; 
 
       const data = await GETHOUSES()
-    .then(res => res.data)
+    .then(res => res.houses)
     .catch(err => err)
 
       const sortProperty = types[type];
@@ -205,7 +205,7 @@ export const SortContruction = async (keyword)=>{
 export const SortType = async (keyword)=>{
 
     const data = await GETHOUSES()
-    .then(res => res.data)
+    .then(res => res.houses)
     .catch(err => err)
 
     const result = data.filter(houses => houses.type === keyword)
