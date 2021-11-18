@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {Container,Paper, Typography, Card, Button,Modal} from '@material-ui/core'
+import {Container,Paper, Typography,Card,CardMedia,Button,Modal} from '@material-ui/core'
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -8,9 +8,7 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import DialpadIcon from '@material-ui/icons/Dialpad';
 import DescriptionIcon from '@material-ui/icons/Description';
 import Footer from '../components/Footer'
-import axios from 'axios'
 import {GETHOUSE} from '../api'
-import {Skeleton} from '@material-ui/lab'
 
 export default function Details (props){
     const [data,setData] = useState()
@@ -67,26 +65,23 @@ export default function Details (props){
                 </div>
             </Modal>
 
+
                {data? <Paper className="detail-paper">
 
-                    <ul className="detail-gallery">
-                    {data? data.gallery.map(res =>
-
-                    <li key={res} style={{display:"inline-block"}}>
-                        <Card  style={Styles.card} onClick={e => {
-                            setModal(res)
-                            handleOpen()
-                            }} >
-                            <img src={res} 
-                            alt={res} 
-                            style={{width:"150px",height:"150px"}}/>
-
-                        </Card> 
-
-                    </li>
-                        ) : ""}
-
-                    </ul>
+                    <div style={{width:"70%", display:"inline-flex" }}>
+                    
+                        {data.gallery.url.map(item => {
+                            const links = item.split(',')
+                            return links.map(url => 
+                            <img src={url}
+                            onClick={e => {
+                                setModal(url)
+                                handleOpen()
+                                }} 
+                            style={{height:"auto",width:"200px",margin:"10px"}}/>
+                            )
+                        })}
+                    </div>
 
                    <div className="detail-info">
                         <Typography variant="h5">
@@ -118,7 +113,7 @@ export default function Details (props){
                         
                         
                         
-                        <p>{data.description}</p>
+                        <p><DescriptionIcon fontSize="small"/> {data.description}</p>
                         
                         <Typography variant="h4">
                             R$  {data.price}
@@ -139,3 +134,18 @@ export default function Details (props){
         </div>
     )
 }
+
+/**
+ * <li key={item} style={{display:"inline-block"}}>
+                            <Card  style={Styles.card} onClick={e => {
+                                setModal(item)
+                                handleOpen()
+                                }} >
+                                <img src={item} 
+                                alt={item} 
+                                style={{width:"150px",height:"150px"}}/>
+    
+                            </Card> 
+    
+                        </li> 
+ */

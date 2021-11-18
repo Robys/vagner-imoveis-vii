@@ -88,13 +88,14 @@ export default function AddHouse(){
             const data = response.data;
             const fileURL = data.secure_url // You should store this URL for future references in your app
             setGallery(prevItens => 
-              [...prevItens,fileURL])
-            
-          })
-          
-          
-        });
+              [...prevItens, fileURL])
 
+              
+            })
+            
+            
+          });
+          
       }
 
       const SubmitForm = async (e) =>{
@@ -103,12 +104,12 @@ export default function AddHouse(){
         const neig = document.getElementById('bairro').value
         const cty = document.getElementById('localidade').value
 
-        const realGallery = await ADDGALLERY([gallery])
-        console.log(realGallery)
-
         setTimeout(()=>{
-
+          
         },1500)
+        
+        const realGallery = await ADDGALLERY(gallery)
+        //console.log(realGallery)
 
         await ADDHOUSE({
                 address:adr,
@@ -125,7 +126,7 @@ export default function AddHouse(){
                 parking:parking,
                 price:price,
                 description:description,
-                gallery:realGallery.id})
+              gallery:realGallery.id})
               .then(res => {
                 console.log(res)
                 setOk(true)

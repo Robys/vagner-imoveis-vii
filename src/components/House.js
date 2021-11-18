@@ -10,7 +10,11 @@ export default function House ({house}){
         className="house"
         key={house.id}>
 
-          {console.log(house)}
+          {house.gallery.url.map(item => {
+            const links = item.split(',')
+            return <img src={links[0]} style={{height:"280px"}}
+            alt="foto-da-casa"/>
+          })}
 
           <div className="house-content">
               <strong>Código : {house.code}</strong>

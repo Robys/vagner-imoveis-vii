@@ -140,7 +140,9 @@ export const GETHOUSE = async (id) =>{
                 size
                 createdAt
                 description
-                gallery
+                gallery{
+                    url
+                }
 
             }
         }`
