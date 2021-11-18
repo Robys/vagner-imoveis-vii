@@ -3,9 +3,9 @@ import {compareTwoStrings} from 'string-similarity'
 
 export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
 
-export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description,gallery}){
-
-   return axios.post(`${DATA_URL}/graphql`,{
+export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
+    finality,type,size,rooms,bathroom,parking,price,description,gallery}){
+   return await axios.post(`${DATA_URL}/graphql`,{
        query:`mutation{
            addHouse(code:"${code}",
             type:"${type}",
@@ -29,10 +29,9 @@ export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,typ
          }
        }`
    })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    .then(res => res)
+    .catch(err => err)
 
-    
 }
 export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description,gallery}){
 
@@ -111,7 +110,9 @@ export const GETHOUSES = async () =>{
                 size
                 createdAt
                 description
-                gallery
+                gallery{
+                    url
+                }
 
             }
         }`

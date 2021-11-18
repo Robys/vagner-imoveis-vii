@@ -10,12 +10,7 @@ export default function House ({house}){
         className="house"
         key={house.id}>
 
-          <div>
-          {house.gallery !== undefined ? 
-          <img src={house.gallery[0]} style={{height:"280px"}}
-          alt="foto-da-casa"/>
-           :"" }
-           </div>
+          {console.log(house)}
 
           <div className="house-content">
               <strong>Código : {house.code}</strong>
@@ -32,3 +27,12 @@ export default function House ({house}){
 
     )
 }
+
+/**
+ * <div>
+          {house.gallery !== undefined ? 
+          <img src={house.gallery[0]} style={{height:"280px"}}
+          alt="foto-da-casa"/>
+           :"" }
+           </div>
+ */

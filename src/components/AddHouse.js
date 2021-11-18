@@ -104,7 +104,7 @@ export default function AddHouse(){
         const cty = document.getElementById('localidade').value
 
         const realGallery = await ADDGALLERY([gallery])
-        //console.log(realGallery)
+        console.log(realGallery)
 
         setTimeout(()=>{
 
