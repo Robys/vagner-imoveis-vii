@@ -47,7 +47,7 @@ code {
 
   .home-content{
     margin-top:140px;
-    margin-bottom:80px;
+    margin-bottom:180px;
     text-align:left;
   }
 
@@ -92,10 +92,10 @@ code {
   .house{
     width:620px;
     height:280px;
-    margin:40px;
+    margin:20px;
     display:inline-flex;
   }
-
+  
   .house img{
     width:200px;
     height:240px;
@@ -112,7 +112,7 @@ code {
   }
 
   .detail-paper{
-    margin-top:20px;
+    margin:40px;
     height: 80%;
     padding:20px;
   }
