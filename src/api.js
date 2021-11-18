@@ -34,7 +34,7 @@ export function ADDHOUSE({address,code,num,neighbor,city,postalCode,finality,typ
 
     
 }
-export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description}){
+export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description,gallery}){
 
    return await axios.post(`${DATA_URL}/graphql`,{
        query:`mutation{
@@ -51,7 +51,8 @@ export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,
             bathroom:"${bathroom}",
             rooms:"${rooms}",
             size:"${size}",
-            description:"${description}"
+            description:"${description}",
+            gallery:"${gallery}"
          ){
              id
              address
@@ -65,7 +66,19 @@ export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,
     
 }
 
-export function DELETEHOUSE({id}){
+export async function ADDGALLERY(gallery){
+    return await axios.post(`${DATA_URL}/graphql`,{
+        query:`mutation{
+            addGallery(url:"${gallery}"){
+              id
+              url
+            }
+          }`
+    }).then(res => res.data.data.addGallery)
+    .catch(err => err)
+}
+
+export function DELETEHOUSE(id){
     return axios.post(`${DATA_URL}/graphql`,{
         query:`mutation{
             deleteHouse(id:"${id}"){

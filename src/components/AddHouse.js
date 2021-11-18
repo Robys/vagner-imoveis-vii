@@ -1,10 +1,8 @@
 import {useState} from 'react'
 import {Paper,Button,TextField,TextareaAutosize,Snackbar} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
-import {ADDHOUSE} from '../api'
+import {ADDHOUSE,ADDGALLERY} from '../api'
 import axios from 'axios'
-
-import {DATA_URL} from '../api'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -91,7 +89,10 @@ export default function AddHouse(){
             const fileURL = data.secure_url // You should store this URL for future references in your app
             setGallery(prevItens => 
               [...prevItens,fileURL])
+            
           })
+          
+          
         });
 
       }
@@ -101,6 +102,9 @@ export default function AddHouse(){
         const adr = document.getElementById('logradouro').value
         const neig = document.getElementById('bairro').value
         const cty = document.getElementById('localidade').value
+
+        const realGallery = await ADDGALLERY([gallery])
+        //console.log(realGallery)
 
         setTimeout(()=>{
 
@@ -121,13 +125,13 @@ export default function AddHouse(){
                 parking:parking,
                 price:price,
                 description:description,
-                gallery:gallery})
+                gallery:realGallery.id})
               .then(res => {
                 console.log(res)
                 setOk(true)
               })
               .catch(err => console.log(err))
-
+          
       }
 
   return (
