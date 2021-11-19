@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {Container,Paper, Typography,Card,CardMedia,Button,Modal} from '@material-ui/core'
+import {Container,Paper, Typography,Button,Modal} from '@material-ui/core'
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -8,13 +8,34 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import DialpadIcon from '@material-ui/icons/Dialpad';
 import DescriptionIcon from '@material-ui/icons/Description';
 import Footer from '../components/Footer'
+
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+
+
 import {GETHOUSE} from '../api'
 
 export default function Details (props){
     const [data,setData] = useState()
     //const [photos,setPhotos] = useState()
-    const [open,setOpen] = useState() // abre e fecha o modal
-    const [modal,setModal] = useState() //seta a imagem a ser mostrada no modal
+    const [open,setOpen] = useState(false) // abre e fecha o modal
+
+    const [images,SetImages] = useState()
+    var [index,SetIndex] = useState(0)
+  
+    const OnSetIndexUp = () =>{
+        var value = index < images.length ? index++ : images.length
+      SetIndex(value)
+        
+
+    }
+
+    const OnSetIndexDown = () =>{
+        var value = index < 0 ? 0 : index--
+        SetIndex(value)
+    
+      }
+  
 
     const handleOpen = () => {
         setOpen(true);
@@ -24,20 +45,15 @@ export default function Details (props){
         setOpen(false);
       };
 
-    const Styles ={
-
-        card:{
-            float:"left",
-            width:"150px",
-            height:"150px",
-            margin:"10px"
-        }
-      }
 
     useEffect(()=>{
         const getHouse = async () =>{
            const result = await GETHOUSE(props.match.params.id)
            setData(result.house)
+
+           result.house.gallery.url.map(item =>{
+               SetImages(item.split(','))
+           })
 
         }
         getHouse()
@@ -56,11 +72,15 @@ export default function Details (props){
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description">
                 <div  style={{width:"100%",height:"100vh",border:"none",color:"white"}}>
-                <img src={modal} 
-                alt={modal} 
-                style={{width:"600px",height:"400px",margin:'40px auto'}}/>
-
-                <p>pressione "esc" para voltar</p>
+                {images ? <img src={images[index]} 
+                 style={{width:"600px",height:"400px",margin:'40px auto'}}/>
+                 :""}
+                <div>
+                    <Button variant="contained" style={{margin:"10px"}}
+                    onClick={OnSetIndexDown} >prev </Button>
+                    <Button variant="contained" style={{margin:"10px"}}
+                    onClick={OnSetIndexUp}>prox </Button>
+                </div>
 
                 </div>
             </Modal>
@@ -68,20 +88,19 @@ export default function Details (props){
 
                {data? <Paper className="detail-paper">
 
-                    <div style={{width:"70%", display:"inline-flex" }}>
+               <GridList cellHeight={160} cols={4}>
                     
                         {data.gallery.url.map(item => {
                             const links = item.split(',')
                             return links.map(url => 
-                            <img src={url}
-                            onClick={e => {
-                                setModal(url)
-                                handleOpen()
-                                }} 
-                            style={{height:"auto",width:"200px",margin:"10px"}}/>
-                            )
+                                (<GridListTile key={url} >
+                                    <img src={url} alt={url} 
+                                    onClick={e => {
+                                    handleOpen()
+                                }} />
+                                  </GridListTile>))
                         })}
-                    </div>
+                </GridList>
 
                    <div className="detail-info">
                         <Typography variant="h5">

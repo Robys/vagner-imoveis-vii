@@ -90,14 +90,13 @@ code {
   }
 
   .house{
-    width:620px;
+    width:600px;
     height:280px;
-    margin:20px;
     display:inline-flex;
   }
   
   .house img{
-    width:200px;
+    width:260px;
     height:240px;
     margin-right:80px
   }

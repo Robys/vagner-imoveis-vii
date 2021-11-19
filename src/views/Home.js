@@ -1,11 +1,13 @@
 import {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import House from '../components/House' 
-import axios from 'axios'
 import {GETHOUSES,SearchFilter,SortFunction,SortContruction,SortType} from '../api'
 import {Container,Paper,Typography, IconButton,InputBase,Button} from '@material-ui/core'
+
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+
 import SearchIcon  from '@material-ui/icons/Search'
-import {Skeleton} from '@material-ui/lab'
 
 export default function Home(){
     const [data,setData] = useState()
@@ -133,7 +135,19 @@ export default function Home(){
               </div>
                  : ""}
 
-              {data !== undefined ? data.houses.map(house => <House key={house.id} house={house}/> ) : "" }
+              {data !== undefined ?
+              
+              <GridList cellHeight={300} cols={2}> 
+              
+              {data.houses.map(house =>
+                <GridListTile key={house.id}>
+                <House house={house}/> 
+                </GridListTile>
+                ) }
+              </GridList>
+              
+              
+              : "" }
           </Container>
 
           <Footer/>

@@ -1,4 +1,3 @@
-//import {useState,useEffect} from 'react' 
 import {Paper,Button} from '@material-ui/core'
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
@@ -9,6 +8,7 @@ export default function House ({house}){
         <Paper 
         className="house"
         key={house.id}>
+
 
           {house.gallery.url.map(item => {
             const links = item.split(',')
