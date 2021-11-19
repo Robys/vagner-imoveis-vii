@@ -31,6 +31,8 @@ export default function AddHouse(){
 
     const [ok, setOk] = useState(false);
 
+    const [onLoading,setOnLoading] = useState({loading:false,message:""})
+
     const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
         return;
@@ -70,6 +72,7 @@ export default function AddHouse(){
 
       const HandleFilesUpload = e =>{
         e.preventDefault()
+        setOnLoading({loading:true,message:"enviando imagens..."})
         const files = Object.values(e.target.files)
         files.map(file => {
           // Initial FormData
@@ -90,7 +93,7 @@ export default function AddHouse(){
             setGallery(prevItens => 
               [...prevItens, fileURL])
 
-              
+              setOnLoading({loading:false,message:""})
             })
             
             
@@ -222,6 +225,16 @@ export default function AddHouse(){
           <Snackbar open={ok} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success">
               Imóvel carregado com sucesso
+            </Alert>
+            </Snackbar>
+
+         :""}
+
+         
+        {onLoading.loading ?
+          <Snackbar open={loading} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="info">
+              {onLoading.message}
             </Alert>
             </Snackbar>
 
