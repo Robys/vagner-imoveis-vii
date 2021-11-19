@@ -232,7 +232,7 @@ export default function AddHouse(){
 
          
         {onLoading.loading ?
-          <Snackbar open={loading} autoHideDuration={6000} onClose={handleClose}>
+          <Snackbar open={onLoading.loading } autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="info">
               {onLoading.message}
             </Alert>
