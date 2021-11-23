@@ -12,7 +12,7 @@ import Footer from '../components/Footer'
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-import {ArrowLeft,ArrowRight} from '@material-ui/icons'
+import {ArrowLeft,ArrowRight,Close} from '@material-ui/icons'
 
 import {GETHOUSE} from '../api'
 
@@ -90,6 +90,11 @@ export default function Details (props){
                     <IconButton size="large" style={{margin:"10px"}}
                     onClick={OnSetIndexUp}>
                     <ArrowRight aria-label="prox-image"  fontSize="inherit" style={{color:"white"}} />    
+                    </IconButton>
+                    
+                    <IconButton size="large" style={{margin:"10px"}}
+                    onClick={handleClose}>
+                    <Close aria-label="prox-image"  fontSize="inherit" style={{color:"white"}} />    
                     </IconButton>
                 </div>
 
