@@ -10,6 +10,8 @@ code {
     monospace;
 }
 
+
+
 @media screen and (min-width: 980px) /* Desktop */ {
   .header{
     margin:20px;
@@ -107,25 +109,23 @@ code {
 
   .details{
     width:100%;
-    height:120vh;
+    height:100vh;
   }
 
+  
   .detail-paper{
     margin:40px;
     height: 80%;
     padding:20px;
+    display: inline-block;
   }
-
-
+  
   .detail-gallery{
     list-style: none;
-    float:left; 
-    max-width: 640px;
   }
-
+  
   .detail-info{
-    margin-left: 20px;
-
+    margin-top: 20px;
   }
 
   .detail-list{
@@ -133,9 +133,10 @@ code {
   }
   
   .detail-list li{
-    margin: 10px;
-    display: inline-block;
+    margin-right: 10px;
+    display: inline-flex;
   }
+
 
   .footer{
     bottom:0;
@@ -175,7 +176,7 @@ code {
 
 }
 
-@media screen and (max-width: 600px) /* Mobile */ {
+@media screen and (max-width: 720px) /* Mobile */ {
 
   .header{
     margin:20px;
@@ -212,16 +213,6 @@ code {
     margin-top: 260px;
     height: 100%;
     padding: 10px;
-  }
-
-  .house{
-    max-width: 320px;
-    height:440px;
-  }
-
-  .house img{
-    max-width:320px;
-    height:240px,
   }
 
   .house-content{
@@ -270,7 +261,6 @@ code {
 
   .detail-gallery{
     list-style: none;
-    float:right; 
     max-width: 340px;
   }
 

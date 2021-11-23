@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {Container,Paper, Typography,Button,Modal} from '@material-ui/core'
+import {Container,Paper, Typography,Button,IconButton,Modal} from '@material-ui/core'
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -12,6 +12,7 @@ import Footer from '../components/Footer'
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
+import {ArrowLeft,ArrowRight} from '@material-ui/icons'
 
 import {GETHOUSE} from '../api'
 
@@ -24,14 +25,14 @@ export default function Details (props){
     var [index,SetIndex] = useState(0)
   
     const OnSetIndexUp = () =>{
-        var value = index < images.length ? index++ : images.length
+        var value = index <= images.length ? index++ : 0
       SetIndex(value)
         
 
     }
 
     const OnSetIndexDown = () =>{
-        var value = index < 0 ? 0 : index--
+        var value = index >= 0 ? index-- : 0
         SetIndex(value)
     
       }
@@ -72,14 +73,24 @@ export default function Details (props){
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description">
                 <div  style={{width:"100%",height:"100vh",border:"none",color:"white"}}>
+
+
                 {images ? <img src={images[index]} 
                  style={{width:"600px",height:"400px",margin:'40px auto'}}/>
                  :""}
+
+
                 <div>
-                    <Button variant="contained" style={{margin:"10px"}}
-                    onClick={OnSetIndexDown} >prev </Button>
-                    <Button variant="contained" style={{margin:"10px"}}
-                    onClick={OnSetIndexUp}>prox </Button>
+                    
+                    <IconButton size="large" style={{margin:"10px"}}
+                    onClick={OnSetIndexDown} >
+                    <ArrowLeft aria-label="prev-image"  fontSize="inherit" style={{color:"white"}} />    
+                    </IconButton>
+
+                    <IconButton size="large" style={{margin:"10px"}}
+                    onClick={OnSetIndexUp}>
+                    <ArrowRight aria-label="prox-image"  fontSize="inherit" style={{color:"white"}} />    
+                    </IconButton>
                 </div>
 
                 </div>
@@ -88,7 +99,7 @@ export default function Details (props){
 
                {data? <Paper className="detail-paper">
 
-               <GridList cellHeight={160} cols={4}>
+               <GridList cellHeight={120} cols={4}>
                     
                         {data.gallery.url.map(item => {
                             const links = item.split(',')
@@ -111,9 +122,15 @@ export default function Details (props){
                         </Typography>
 
                         <p><DialpadIcon fontSize="small"/> Código: {data.code}</p>
-                        <p><HomeWorkIcon fontSize="small"/> Tipo: {data.type}</p>
 
+                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address} - {data.number}
+                        - CEP: {data.postalCode}</p>
+                        
+                        
                         <ul className="detail-list">
+                            <li>
+                            <p><HomeWorkIcon fontSize="small"/> Tipo: {data.type}</p>
+                            </li>
                             <li>
                             <p><AspectRatioIcon fontSize="small"/> Metragem: {data.size}</p>
                             </li>
@@ -126,11 +143,6 @@ export default function Details (props){
                             
 
                         </ul>
-                    
-                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address} - {data.number}
-                        - CEP: {data.postalCode}</p>
-                        
-                        
                         
                         <p><DescriptionIcon fontSize="small"/> {data.description}</p>
                         
