@@ -159,25 +159,30 @@ export async function SearchFilter(keyword){
     
     const response = data.filter(houses => {
 
-        const perAddress = compareTwoStrings(houses.address,keyword)
+        const perAddress = compareTwoStrings(
+            houses.address.toUpperCase(),keyword.toUpperCase())
         if(perAddress >= .52){
             
             return houses
         }
-        const perCity = compareTwoStrings(houses.city,keyword)
+        const perCity = compareTwoStrings(
+            houses.city.toUpperCase(),keyword.toUpperCase())
         if(perCity >= .52){
             return houses
         }
-        const perNeighbor = compareTwoStrings(houses.neighbor,keyword)
+        const perNeighbor = compareTwoStrings(
+            houses.neighbor.toUpperCase(),keyword.toUpperCase())
         if(perNeighbor >= .52){
             return houses
         }
-        const perCode = compareTwoStrings(houses.code,keyword)
+        const perCode = compareTwoStrings(
+            houses.code.toUpperCase(),keyword.toUpperCase())
         if(perCode >= .52){
             
             return houses
         }
-        const perPrice = compareTwoStrings(houses.price,keyword)
+        const perPrice = compareTwoStrings(
+            houses.price.toUpperCase(),keyword.toUpperCase())
         if(perPrice >= .52){
             return houses
         }
