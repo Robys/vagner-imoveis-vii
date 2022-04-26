@@ -37,8 +37,8 @@ export default function Home(){
         <div className="home">
 
           <Container className="header">
-            <Typography variant="h2" className="header-title">Negociando imóveis </Typography>
-            <Typography variant="h6" className="header-title"> com responsabilidade </Typography>
+            <Typography variant="h1" className="header-title">Negociando imóveis </Typography>
+            <Typography variant="h2" className="header-title"> com responsabilidade </Typography>
           </Container>
   
           <Container className="search-paper">

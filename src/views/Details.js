@@ -119,10 +119,10 @@ export default function Details (props){
                 </GridList>
 
                    <div className="detail-info">
-                        <Typography variant="h5">
+                        <Typography variant="p">
                             {data.neighbor}
                         </Typography>
-                        <Typography variant="h6">
+                        <Typography variant="p">
                             {data.city}
                         </Typography>
 

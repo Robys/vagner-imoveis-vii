@@ -24,11 +24,11 @@ export default function About(){
     return(
         <div>
             <Container className="header">
-            <Typography variant="h2" className="header-title">Tradição e Respeito</Typography>
+            <Typography variant="h1" className="about-title">Nossa Imobiliária</Typography>
             </Container>
 
             <Container className="about-content">
-            <Typography variant="h4" className="about-title">Nossa Imobiliária</Typography>
+            <Typography variant="h2" className="header-title">Tradição e Respeito</Typography>
 
             <Card className="about-card">
                 <img src={hands} alt="confiança"/>
@@ -75,7 +75,7 @@ export default function About(){
             </Container>
 
             <Container className="about-content">
-            <Typography variant="h4" className="about-title">Nosso Time</Typography>
+            <Typography variant="h2" className="about-title">Nosso Time</Typography>
             <div className="about-avatar">
             <Avatar src={vagner} alt="Vagner Oliveira" className="avatar"/>
             <p>{bull} Vagner Oliveira {bull}</p>
@@ -92,7 +92,7 @@ export default function About(){
             </Container>
 
             <Container className="about-content">
-            <Typography variant="h4" className="about-title">Nossos Serviços</Typography>
+            <Typography variant="h2" className="about-title">Nossos Serviços</Typography>
 
             <Card style={Styles.card}>
                 <CardContent>
