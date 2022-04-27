@@ -17,9 +17,8 @@ export default function House ({house}){
           })}
 
           <div className="house-content">
-              <strong>Código : {house.code}</strong>
-          <p>{house.address} {house.num}</p>
-          <p>{house.neighbor} - {house.city}</p>
+          <h3>{house.type} em {house.neighbor} - {house.city}</h3>
+          <strong>Código : {house.code}</strong>
           <p> <MeetingRoomIcon fontSize="small"/> Quartos: {house.rooms}</p>
           <p><DriveEtaIcon fontSize="small"/> Vagas: {house.parking}</p>
           <p>R$ {house.price}</p>
