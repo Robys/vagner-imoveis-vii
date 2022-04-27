@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Paper,Button,TextField,TextareaAutosize,Snackbar,Checkbox} from '@material-ui/core'
+import {Paper,Button,TextField,TextareaAutosize,Snackbar,FormControlLabel,Checkbox} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import {ADDHOUSE,ADDGALLERY} from '../api'
 import axios from 'axios'
@@ -159,7 +159,15 @@ export default function AddHouse(){
               <TextField style={Styles.input}
               type="number" label="Número" placeholder="123"onChange={e=>setNum(e.target.value)}/>
 
-              <Checkbox label="Mostrar Endereço" onChange={e => setHideAddress(!hideaddress)}/>
+              <FormControlLabel
+            label="Mostrar Endereço"
+            control={
+              <Checkbox
+                checked={hideaddress}
+                onChange={setHideAddress(!hideaddress)}
+              />
+            }/>
+              
 
               <TextField style={Styles.input}
               type="text" label="Metragem" placeholder="123x321"onChange={e=>setSize(e.target.value)}/>
