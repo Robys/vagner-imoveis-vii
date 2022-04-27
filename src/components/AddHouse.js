@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Paper,Button,TextField,TextareaAutosize,Snackbar} from '@material-ui/core'
+import {Paper,Button,TextField,TextareaAutosize,Snackbar,Checkbox} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import {ADDHOUSE,ADDGALLERY} from '../api'
 import axios from 'axios'
@@ -13,6 +13,7 @@ export default function AddHouse(){
     const [postalCode,setCEP] = useState()
     const [code,setCode] = useState()
     const [address,setAddress] = useState()
+    const [hideaddress,setHideAddress] = useState(false)
     const [num,setNum] = useState()
     const [neighbor,setNeighbor]=useState()
     const [city,setCity]=useState()
@@ -129,6 +130,7 @@ export default function AddHouse(){
                 parking:parking,
                 price:price,
                 description:description,
+                hideAddress:hideAddress,
               gallery:realGallery.id})
               .then(res => {
                 console.log(res)
@@ -156,6 +158,8 @@ export default function AddHouse(){
 
               <TextField style={Styles.input}
               type="number" label="Número" placeholder="123"onChange={e=>setNum(e.target.value)}/>
+
+              <Checkbox label="Mostrar Endereço" onChange={e => setHideAddress(!hideaddress)}/>
 
               <TextField style={Styles.input}
               type="text" label="Metragem" placeholder="123x321"onChange={e=>setSize(e.target.value)}/>

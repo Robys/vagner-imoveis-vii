@@ -120,16 +120,29 @@ export default function Details (props){
 
                    <div className="detail-info">
                         <Typography variant="p">
-                            {data.neighbor}
-                        </Typography>
-                        <Typography variant="p">
-                            {data.city}
+                            {data.neighbor} {data.city}
                         </Typography>
 
                         <p><DialpadIcon fontSize="small"/> Código: {data.code}</p>
 
-                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address}
-                        - CEP: {data.postalCode}</p>
+                        {data.hideAddress ? 
+                        <div>
+                        <Typography variant="p">
+                            {data.neighbor} {data.city}
+                        </Typography>
+
+                        </div>
+                        :
+                        <div>
+                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address}</p> 
+
+                        <Typography variant="p">
+                            {data.neighbor} {data.city}
+                        </Typography>
+
+                        </div>
+                        }
+                        
                         
                         
                         <ul className="detail-list">
