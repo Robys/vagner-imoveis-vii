@@ -38,11 +38,11 @@ export default function TopBar(){
             </MenuItem>
 
             <MenuItem>
-            <Link href="/about"> Sobre nós </Link>
+            <Link href="/sobre"> Sobre nós </Link>
             
             </MenuItem>
             <MenuItem>
-            <Link href="/contact">
+            <Link href="/contato">
              Fale com a gente 
             </Link>
              </MenuItem>
