@@ -128,7 +128,7 @@ export default function Details (props){
 
                         <p><DialpadIcon fontSize="small"/> Código: {data.code}</p>
 
-                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address} - {data.number}
+                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address}
                         - CEP: {data.postalCode}</p>
                         
                         
@@ -152,7 +152,7 @@ export default function Details (props){
                         <p><DescriptionIcon fontSize="small"/> {data.description}</p>
                         
                         <Typography variant="h4">
-                            R$  {data.price}
+                            R$  {data.price}.000
                         </Typography>
 
                         <Button variant="contained" color="primary" href="/contact">
