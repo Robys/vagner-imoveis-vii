@@ -135,9 +135,7 @@ export default function Home(){
               </div>
                  : ""}
 
-              {data !== undefined ?
-              
-              <GridList cellHeight={300} cols={2}> 
+              {data ? <GridList cellHeight={300} cols={2}> 
               
               {data.houses.map(house =>
                 <GridListTile key={house.id}>
@@ -145,9 +143,7 @@ export default function Home(){
                 </GridListTile>
                 ) }
               </GridList>
-              
-              
-              : "" }
+              : "imóveis indisponiveis no momento"}
           </Container>
 
           <Footer/>
@@ -157,6 +153,12 @@ export default function Home(){
       );
     
 }
+
+/*
+
+
+
+*/
 
 
 
