@@ -130,7 +130,7 @@ export default function AddHouse(){
                 parking:parking,
                 price:price,
                 description:description,
-                hideAddress:hideAddress,
+                hideAddress:hideaddress,
               gallery:realGallery.id})
               .then(res => {
                 console.log(res)
