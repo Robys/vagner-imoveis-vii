@@ -22,7 +22,7 @@ export default function House ({house}){
           <p> <MeetingRoomIcon fontSize="small"/> Quartos: {house.rooms}</p>
           <p><DriveEtaIcon fontSize="small"/> Vagas: {house.parking}</p>
           <p>R$ {house.price}.000</p>
-          <Button href={`/details/${house.id}`} variant="contained" color="secondary">
+          <Button href={`/detalhes/${house.id}`} variant="contained" color="secondary">
             Ver Mais
           </Button>
           </div>
