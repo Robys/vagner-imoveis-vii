@@ -51,11 +51,10 @@ export default function Details (props){
            const result = await GETHOUSE(props.match.params.id)
            setData(result.house)
 
-           if(data.gallery!==null){
-               data.gallery.url.map(item =>{
-                   SetImages(item.split(','))
-               })
-
+           if(result.house.gallery !== null){
+               result.house.gallery.url.map(item =>{
+                      SetImages(item.split(','))
+              })
            }
 
         }
