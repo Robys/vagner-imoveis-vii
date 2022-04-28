@@ -107,7 +107,7 @@ export default function Details (props){
                {data ?
                
                <Paper className="detail-paper">
-                   <DetailGallery gallery={data} handleOpen={handleOpen}/>
+                   <DetailGallery gallery={data.gallery} handleOpen={handleOpen}/>
 
                    <div className="detail-info">
 

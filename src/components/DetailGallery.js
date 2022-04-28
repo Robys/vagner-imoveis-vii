@@ -1,12 +1,13 @@
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-export default function DetailGallery ({data,handleOpen}){
+export default function DetailGallery ({gallery,handleOpen}){
 
     return(
         <GridList cellHeight={120} cols={4}>
                     
-                        {data.gallery!==null? data.gallery.url.map(item => {
+                        {gallery === null ? "imagens indisponiveis"  : 
+                            gallery.url.map(item => {
                             const links = item.split(',')
                             return links.map(url => 
                                 (<GridListTile key={url} >
@@ -15,7 +16,7 @@ export default function DetailGallery ({data,handleOpen}){
                                     handleOpen()
                                 }} />
                                  </GridListTile>))
-                        }) : ""}
+                        }) }
                 </GridList>
 
     )
