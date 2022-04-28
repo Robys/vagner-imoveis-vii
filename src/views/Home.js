@@ -136,17 +136,7 @@ export default function Home(){
                  : ""}
 
                 {data !== undefined ?
-                <div>
-                  {data.houses === undefined ? <p>imóveis indisponiveis no momento</p> :
-                  <GridList cellHeight={300} cols={2}> 
-              
-                  {data.houses.map(house =>
-                    <GridListTile key={house.id}>
-                    <House house={house}/> 
-                    </GridListTile>
-                    ) }
-                  </GridList> }
-                </div>
+                console.log(data)
                   : <div> </div>
                 }
 
