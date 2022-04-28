@@ -1,6 +1,8 @@
 import {Paper,Button} from '@material-ui/core'
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import noPhoto from '../img/indisponivel.png'
+import HouseThumbNail from './HouseThumbNail';
 
 export default function House ({house}){
     
@@ -9,12 +11,10 @@ export default function House ({house}){
         className="house"
         key={house.id}>
 
+          {house.gallery !== null ? <HouseThumbNail gallery={house.gallery.url}/> 
+          : <img src={noPhoto} style={{height:"100%"}}
+          alt="foto-da-casa"/>}
 
-          {house.gallery.url.map(item => {
-            const links = item.split(',')
-            return <img src={links[0]} style={{height:"280px"}}
-            alt="foto-da-casa"/>
-          })}
 
           <div className="house-content">
           <h5>{house.type} em {house.neighbor} - {house.city}</h5>

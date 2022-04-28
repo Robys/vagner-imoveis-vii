@@ -9,8 +9,7 @@ import DialpadIcon from '@material-ui/icons/Dialpad';
 import DescriptionIcon from '@material-ui/icons/Description';
 import Footer from '../components/Footer'
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+import DetailGallery from '../components/DetailGallery'
 
 import {ArrowLeft,ArrowRight,Close} from '@material-ui/icons'
 
@@ -102,21 +101,9 @@ export default function Details (props){
             </Modal>
 
 
-               {data? <Paper className="detail-paper">
+               {data !== null? <Paper className="detail-paper">
 
-               <GridList cellHeight={120} cols={4}>
-                    
-                        {data.gallery.url.map(item => {
-                            const links = item.split(',')
-                            return links.map(url => 
-                                (<GridListTile key={url} >
-                                    <img src={url} alt={url} 
-                                    onClick={e => {
-                                    handleOpen()
-                                }} />
-                                  </GridListTile>))
-                        })}
-                </GridList>
+               {data.gallery !== null ? <DetailGallery gallery={data.gallery} handleOpen={handleOpen}/> :""}
 
                    <div className="detail-info">
                         <Typography variant="p">

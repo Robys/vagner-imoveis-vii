@@ -124,7 +124,7 @@ export default function Home(){
             </Container>
   
             <Container className="home-content">
-              {data || result ? <HousesMapping houses={data.houses} results={result} keyword={keyword} /> : ""}
+            {data || result ? <HousesMapping houses={data.houses} results={result} keyword={keyword} /> : ""}
           </Container>
 
           <Footer/>
@@ -136,6 +136,8 @@ export default function Home(){
 }
 
 /*
+
+
 
 {data !== undefined ? <GridList cellHeight={300} cols={2}> 
               

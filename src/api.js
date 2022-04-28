@@ -92,7 +92,7 @@ export function DELETEHOUSE(id){
 }
 
 export const GETHOUSES = async () =>{
-    return await axios.post(`${DATA_URL}/graphql`,{
+    return await axios.post(`${DATA_URL}`,{
         query:`query{
             houses{
                 id
@@ -141,7 +141,7 @@ export const GETHOUSE = async (id) =>{
                 size
                 createdAt
                 description
-                hideAddress
+                
                 gallery{
                     url
                 }
