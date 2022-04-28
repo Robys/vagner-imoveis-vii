@@ -2,6 +2,7 @@ import axios from 'axios'
 import {compareTwoStrings} from 'string-similarity'
 
 export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
+//export const DATA_URL = "http://localhost:4000/graphql"
 
 export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
     finality,type,size,rooms,bathroom,parking,price,description,hideAddress,gallery}){
@@ -21,10 +22,9 @@ export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
             rooms:"${rooms}",
             size:"${size}",
             description:"${description}",
-            hideAddress:${hideAddress},
+            hideAddress:"${hideAddress}",
             gallery:"${gallery}",
          ){
-             id
              address
              finality
          }
@@ -67,14 +67,14 @@ export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,
 }
 
 export async function ADDGALLERY(gallery){
-    return await axios.post(`${DATA_URL}/graphql`,{
+   return await axios.post(`${DATA_URL}/graphql`,{
         query:`mutation{
             addGallery(url:"${gallery}"){
               id
               url
             }
           }`
-    }).then(res => res.data.data.addGallery)
+    }).then(res => res)
     .catch(err => err)
 }
 
@@ -111,7 +111,7 @@ export const GETHOUSES = async () =>{
                 size
                 createdAt
                 description
-                hideAddress
+                
                 gallery{
                     url
                 }
