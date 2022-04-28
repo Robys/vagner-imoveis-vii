@@ -135,9 +135,9 @@ export default function Home(){
               </div>
                  : ""}
 
-                {data !== null ?
+                {data !== undefined ?
                 <div>
-                  {data.houses === null ? <p>imóveis indisponiveis no momento</p> :
+                  {data.houses === undefined ? <p>imóveis indisponiveis no momento</p> :
                   <GridList cellHeight={300} cols={2}> 
               
                   {data.houses.map(house =>
