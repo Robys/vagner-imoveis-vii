@@ -1,11 +1,9 @@
 import {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
-import House from '../components/House' 
 import {GETHOUSES,SearchFilter,SortFunction,SortContruction,SortType} from '../api'
 import {Container,Paper,Typography, IconButton,InputBase,Button} from '@material-ui/core'
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+import HousesMapping from '../components/HousesMapping'
 
 import SearchIcon  from '@material-ui/icons/Search'
 
@@ -126,21 +124,7 @@ export default function Home(){
             </Container>
   
             <Container className="home-content">
-            {result !== undefined?
-              <div>
-                <Typography variant="h6" >Resultados sobre {keyword}</Typography>
-                <hr style={{margin:"40px",width:"250px"}}/>
-                {result.map(house => <House key={house.id} house={house}/>)}
-                <hr style={{margin:"40px",width:"250px"}}/>
-              </div>
-                 : ""}
-
-                {data !== undefined ?
-                console.log(data)
-                  : <div> </div>
-                }
-
-              
+              {data || result ? <HousesMapping houses={data.houses} results={result} keyword={keyword} /> : ""}
           </Container>
 
           <Footer/>
