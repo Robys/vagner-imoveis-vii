@@ -97,6 +97,7 @@ export default function AddHouse(){
               [...prevItens, fileURL])
 
               setOnLoading({loading:false,message:""})
+              
             })
             
             
@@ -114,32 +115,34 @@ export default function AddHouse(){
           
         },1500)
         
+        console.log(gallery)
         const realGallery = await ADDGALLERY(gallery)
-        //console.log(realGallery)
 
-        await ADDHOUSE({
-                address:adr,
-                code:code,
-                num:num,
-                neighbor:neig,
-                city:cty,
-                postalCode:postalCode,
-                finality:finality,
-                type:type,
-                size:size,
-                rooms:rooms,
-                bathroom:bathroom,
-                parking:parking,
-                price:price,
-                description:description,
-                hideAddress:hideaddress,
-              gallery:realGallery.id})
-              .then(res => {
-                console.log(res)
-                setOk(true)
-              })
-              .catch(err => console.log(err))
-          
+        const house = await ADDHOUSE({
+          address:adr,
+          code:code,
+          num:num,
+          neighbor:neig,
+          city:cty,
+          postalCode:postalCode,
+          finality:finality,
+          type:type,
+          size:size,
+          rooms:rooms,
+          bathroom:bathroom,
+          parking:parking,
+          price:price,
+          description:description,
+          hideAddress:hideaddress,
+        gallery:realGallery.id})
+        .then(res => {
+          setOk(true)
+        })
+        .catch(err => console.log(err))
+
+       // console.log(house)
+
+        
       }
 
   return (
