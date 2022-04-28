@@ -1,5 +1,7 @@
 import {useState} from 'react'
-import {Paper,Button,TextField,TextareaAutosize,Snackbar,FormControlLabel,Checkbox} from '@material-ui/core'
+import {Paper,Button,FormGroup,
+  TextField,TextareaAutosize,Snackbar,Grid,
+  FormControlLabel,Checkbox} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import {ADDHOUSE,ADDGALLERY} from '../api'
 import axios from 'axios'
@@ -63,7 +65,7 @@ export default function AddHouse(){
         },
         textarea:{
             margin:"20px",
-            maxWidth:"600px",
+            width:"480px",
             height:"100px"
         },
         submit: {
@@ -144,24 +146,58 @@ export default function AddHouse(){
       <Paper style={Styles.paper}>
           <form style={Styles.form}>
 
-              <TextField style={Styles.input}
-              type="text" label="CEP" onChange={e=>setCEP(e.target.value)}/>
-              <Button onClick={getByCEP}>buscar por cep</Button>
+          <h2>Informações de Endereço</h2>
+        <Grid container rowSpacing={2}>
+          <Grid item xs={6} md={8}>
+          <TextField style={Styles.input}
+                            type="text" 
+                            id="logradouro"
+                            label={cepres !==undefined ? cepres.logradouro :"Logradouro"}
+                            value={cepres !==undefined? cepres.logradouro : address}
+                            onChange={e => setAddress(e.target.value)}
+                            />
+                <TextField style={Styles.input}
+                type="number" label="Número" placeholder="123"onChange={e=>setNum(e.target.value)}/>
 
-              <TextField style={Styles.input}
-              type="text" 
-              id="logradouro"
-              label={cepres !==undefined ? cepres.logradouro :"Logradouro"}
-              value={cepres !==undefined? cepres.logradouro : address}
-              onChange={e => setAddress(e.target.value)}
-              />
+                  <TextField style={Styles.input}
+                  id="bairro" 
+                  type="text"
+                  value={cepres !==undefined? cepres.bairro : neighbor}
+                  label={cepres !==undefined ? cepres.bairro :"Bairro"}
+                  onChange={e => setNeighbor(e.target.value)}/>
+                  
+                  <TextField style={Styles.input}
+                  id="localidade"
+                  type="text" value={cepres !==undefined? cepres.localidade : city}
+                  label={cepres !==undefined ? cepres.localidade :"Localidade"}
+                  onChange={e => setCity(e.target.value)}/>
 
-              <TextField style={Styles.input}
-              type="number" label="Número" placeholder="123"onChange={e=>setNum(e.target.value)}/>
+                <FormGroup>
+
+                <TextField style={Styles.input}
+                type="text" label="CEP" onChange={e=>setCEP(e.target.value)}/>
+
+                <Button style={{width:"120px"}}
+                onClick={getByCEP}>buscar cep</Button>
+                </FormGroup>
 
 
-              
 
+                  <FormControlLabel label="Ocultar" control={
+                    <Checkbox checked={hideaddress}
+                    onChange={e => setHideAddress(!hideaddress)}
+                    inputProps={{ 'aria-label': 'controlled' }}/>}>
+                  </FormControlLabel>
+                
+                </Grid>
+
+        </Grid>
+
+        <h2>Informações Gerais</h2>
+
+        <Grid container rowSpacing={2}>
+        
+          <Grid item xs={6} md={8}>
               <TextField style={Styles.input}
               type="text" label="Metragem" placeholder="123x321"onChange={e=>setSize(e.target.value)}/>
 
@@ -170,22 +206,12 @@ export default function AddHouse(){
 
               <TextField style={Styles.input}
               type="text" label="Finalidade" placeholder="venda/aluguel"onChange={e=>setFinality(e.target.value)}/>
-
-              <TextField style={Styles.input}
-              id="bairro" 
-              type="text"
-              value={cepres !==undefined? cepres.bairro : neighbor}
-              label={cepres !==undefined ? cepres.bairro :"Bairro"}
-              onChange={e => setNeighbor(e.target.value)}/>
-
-              <TextField style={Styles.input}
-              id="localidade"
-              type="text" value={cepres !==undefined? cepres.localidade : city}
-              label={cepres !==undefined ? cepres.localidade :"Localidade"}
-              onChange={e => setCity(e.target.value)}/>
-
+              
               <TextField style={Styles.input}
               type="number" label="Comodos" onChange={e=>setRooms(e.target.value)}/>
+          </Grid>
+
+          <Grid item xs={6} md={8}>
 
               <TextField style={Styles.input}
               type="number" label="Banheiros" onChange={e=>setBathrooms(e.target.value)}/>
@@ -199,9 +225,22 @@ export default function AddHouse(){
               <TextField style={Styles.input}
               type="text" label="Código" placeholder="XYZ123"onChange={e=>setCode(e.target.value)}/>
 
+          </Grid>
+
+          <Grid item xs={6} md={8}>
+
               <TextareaAutosize style={Styles.textarea}
               onChange={e=>setDescription(e.target.value)}
               placeholder="Breve descrição" />
+
+          </Grid>
+
+
+        </Grid>
+
+
+
+
 
           </form>
 

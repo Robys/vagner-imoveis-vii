@@ -10,12 +10,13 @@ import {
     Container,
     Button,
     Table,
-    TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
     Paper } from '@material-ui/core'
+
+import HouseTable from './HouseTable'
 
 import {GETHOUSES,UPDATEHOUSE,DELETEHOUSE} from '../api'
 
@@ -207,34 +208,7 @@ export default function HouseList(){
           </TableRow>
             </TableHead>
 
-            <TableBody>
-            {data ? data.houses.map(house => 
-                <TableRow key={house.id}>
-                    <TableCell align="center"> 
-                    <Button variant="contained" color="primary" onClick={e =>{
-                        e.preventDefault()
-                        setShow(true)
-                        setSelectedID(house.id)
-                    }}>
-                        Editar
-                    </Button> 
-                    </TableCell>
-                    <TableCell align="center">{house.id}</TableCell>
-                    {house.code === null ? <TableCell align="center"> nulo </TableCell>
-                    :<TableCell align="center">{house.code}</TableCell> }
-                    <TableCell align="center">{house.type} </TableCell>
-                    <TableCell align="center">{house.finality} </TableCell>
-                    <TableCell align="center">{house.address} {house.num}</TableCell>
-                    <TableCell align="center">{house.neighbor}</TableCell>
-                    <TableCell align="center">{house.city}</TableCell>
-                    <TableCell align="center">{house.size}</TableCell>
-                    <TableCell align="center">{house.price}</TableCell>
-
-                </TableRow>
-                ) : "" }
-
-
-            </TableBody>
+            {data!==undefined ? <HouseTable houses={data.houses} setShow={setShow} setSelectedID={setSelectedID}/> : ""}
 
             </Table>
             </TableContainer>
