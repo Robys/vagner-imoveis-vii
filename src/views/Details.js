@@ -101,7 +101,20 @@ export default function Details (props){
             </Modal>
 
 
-               {data? <Paper className="detail-paper">
+               {data ? console.log(data) : ""}
+
+            </Container>
+
+            <Footer/>
+
+        </div>
+    )
+}
+
+/**
+ * 
+ * 
+ * <Paper className="detail-paper">
 
                    console.log(data)
 
@@ -163,27 +176,5 @@ export default function Details (props){
                    </div>
                         
 
-                    </Paper> : ""}
-
-            </Container>
-
-            <Footer/>
-
-        </div>
-    )
-}
-
-/**
- * <li key={item} style={{display:"inline-block"}}>
-                            <Card  style={Styles.card} onClick={e => {
-                                setModal(item)
-                                handleOpen()
-                                }} >
-                                <img src={item} 
-                                alt={item} 
-                                style={{width:"150px",height:"150px"}}/>
-    
-                            </Card> 
-    
-                        </li> 
+                    </Paper>
  */
