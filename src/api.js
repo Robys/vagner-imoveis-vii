@@ -111,7 +111,7 @@ export const GETHOUSES = async () =>{
                 size
                 createdAt
                 description
-                
+                hideAddress
                 gallery{
                     url
                 }
@@ -141,7 +141,7 @@ export const GETHOUSE = async (id) =>{
                 size
                 createdAt
                 description
-                
+                hideAddress
                 gallery{
                     url
                 }
