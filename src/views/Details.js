@@ -103,6 +103,8 @@ export default function Details (props){
 
                {data !== null? <Paper className="detail-paper">
 
+                   console.log(data)
+
                  <DetailGallery gallery={data} handleOpen={handleOpen}/>
 
                    <div className="detail-info">
