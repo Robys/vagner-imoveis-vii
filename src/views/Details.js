@@ -51,9 +51,12 @@ export default function Details (props){
            const result = await GETHOUSE(props.match.params.id)
            setData(result.house)
 
-           result.house.gallery.url.map(item =>{
-               SetImages(item.split(','))
-           })
+           if(data!==null){
+               data.house.gallery.url.map(item =>{
+                   SetImages(item.split(','))
+               })
+
+           }
 
         }
         getHouse()
@@ -101,7 +104,68 @@ export default function Details (props){
             </Modal>
 
 
-               {data ? console.log(data) : ""}
+               {data ?
+               
+               <Paper className="detail-paper">
+                   <DetailGallery gallery={data} handleOpen={handleOpen}/>
+
+                   <div className="detail-info">
+
+                        <p><DialpadIcon fontSize="small"/> Código: {data.code}</p>
+
+                        {data.hideAddress ? 
+                        <div>
+                        <Typography variant="p">
+                            {data.neighbor} {data.city}
+                        </Typography>
+
+                        </div>
+                        :
+                        <div>
+                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address}</p> 
+
+                        <Typography variant="p">
+                            {data.neighbor} {data.city}
+                        </Typography>
+
+                        </div>
+                        }
+                        
+                        
+                        
+                        <ul className="detail-list">
+                            <li>
+                            <p><HomeWorkIcon fontSize="small"/> Tipo: {data.type}</p>
+                            </li>
+                            <li>
+                            <p><AspectRatioIcon fontSize="small"/> Metragem: {data.size}</p>
+                            </li>
+                            <li>
+                            <p> <MeetingRoomIcon fontSize="small"/> Quartos: {data.rooms}</p>
+                            </li>
+                            <li>
+                            <p><DriveEtaIcon fontSize="small"/> Vagas: {data.parking}</p>
+                            </li>
+                            
+
+                        </ul>
+                        
+                        <p><DescriptionIcon fontSize="small"/> {data.description}</p>
+                        
+                        <Typography variant="h4">
+                            R$  {data.price}.000
+                        </Typography>
+
+                        <Button variant="contained" color="primary" href="/contact">
+                            Consultar
+                        </Button>
+                   </div>
+
+
+               </Paper>
+               
+               
+               : "informações indisponiveis no momento."}
 
             </Container>
 
