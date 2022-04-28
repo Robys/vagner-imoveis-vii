@@ -135,15 +135,22 @@ export default function Home(){
               </div>
                  : ""}
 
-              {data ? <GridList cellHeight={300} cols={2}> 
+                {data !== null ?
+                <div>
+                  {data.houses === null ? <p>imóveis indisponiveis no momento</p> :
+                  <GridList cellHeight={300} cols={2}> 
               
-              {data.houses.map(house =>
-                <GridListTile key={house.id}>
-                <House house={house}/> 
-                </GridListTile>
-                ) }
-              </GridList>
-              : "imóveis indisponiveis no momento"}
+                  {data.houses.map(house =>
+                    <GridListTile key={house.id}>
+                    <House house={house}/> 
+                    </GridListTile>
+                    ) }
+                  </GridList> }
+                </div>
+                  : <div> </div>
+                }
+
+              
           </Container>
 
           <Footer/>
@@ -156,7 +163,15 @@ export default function Home(){
 
 /*
 
-
+{data !== undefined ? <GridList cellHeight={300} cols={2}> 
+              
+              {data.houses.map(house =>
+                <GridListTile key={house.id}>
+                <House house={house}/> 
+                </GridListTile>
+                ) }
+              </GridList>
+              : "imóveis indisponiveis no momento"}
 
 */
 
