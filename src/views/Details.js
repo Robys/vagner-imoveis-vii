@@ -101,7 +101,7 @@ export default function Details (props){
             </Modal>
 
 
-               {data !== null? <Paper className="detail-paper">
+               {data? <Paper className="detail-paper">
 
                    console.log(data)
 
