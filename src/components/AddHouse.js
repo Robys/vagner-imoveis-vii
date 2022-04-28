@@ -159,14 +159,7 @@ export default function AddHouse(){
               <TextField style={Styles.input}
               type="number" label="Número" placeholder="123"onChange={e=>setNum(e.target.value)}/>
 
-              <FormControlLabel
-            label="Mostrar Endereço"
-            control={
-              <Checkbox
-                checked={hideaddress}
-                onChange={setHideAddress(!hideaddress)}
-              />
-            }/>
+
               
 
               <TextField style={Styles.input}
@@ -255,6 +248,18 @@ export default function AddHouse(){
       </Paper>
   )  
 }
+
+
+/**
+ *               <FormControlLabel
+            label="Mostrar Endereço"
+            control={
+              <Checkbox
+                checked={hideaddress}
+                onChange={setHideAddress(!hideaddress)}
+              />
+            }/>
+ */
 
 /**
  *       const SendData = response =>{
