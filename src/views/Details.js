@@ -103,7 +103,7 @@ export default function Details (props){
 
                {data !== null? <Paper className="detail-paper">
 
-                 <DetailGallery gallery={data.gallery} handleOpen={handleOpen}/>
+                 <DetailGallery gallery={data} handleOpen={handleOpen}/>
 
                    <div className="detail-info">
                         <Typography variant="p">
