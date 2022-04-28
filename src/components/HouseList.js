@@ -45,7 +45,7 @@ export default function HouseList(){
       useEffect(()=>{
         const getList = async () =>{
             const res = await GETHOUSES()
-            //console.log(res)
+            console.log(res)
             setData(res)
         }
 
@@ -108,7 +108,7 @@ export default function HouseList(){
     return (
         <Container>
             <Dialog open={show} onClose={e => setShow(false)} aria-labelledby="form-dialog-title">
-              {console.log(selectedID)}
+              
             <DialogTitle id="form-dialog-title">Editar</DialogTitle>
             <DialogContent>
             <DialogContentText>

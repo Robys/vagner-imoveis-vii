@@ -6,6 +6,10 @@ export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
 
 export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
     finality,type,size,rooms,bathroom,parking,price,description,hideAddress,gallery}){
+
+        console.log(gallery)
+
+
    return await axios.post(`${DATA_URL}/graphql`,{
        query:`mutation{
            addHouse(code:"${code}",

@@ -115,10 +115,9 @@ export default function AddHouse(){
           
         },1500)
         
-        console.log(gallery)
         const realGallery = await ADDGALLERY(gallery)
 
-        const house = await ADDHOUSE({
+         await ADDHOUSE({
           address:adr,
           code:code,
           num:num,
@@ -139,9 +138,6 @@ export default function AddHouse(){
           setOk(true)
         })
         .catch(err => console.log(err))
-
-       // console.log(house)
-
         
       }
 
