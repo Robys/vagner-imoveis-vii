@@ -6,13 +6,15 @@ import Admin from './views/Admin'
 import About from './views/About'
 import Contact from './views/Contact'
 import Details from './views/Details'
+import RepairPage from './views/RepairPage'
 
 function App() {
   return (
     <div className="App">
       <TopBar/>
       <BrowserRouter>
-      <Route exact path="/" component={Home}/>
+      <Route exact path="/" component={RepairPage}/>
+      <Route exact path="/home" component={Home}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/adm" component={Admin}/>
       <Route exact path="/sobre" component={About}/>
