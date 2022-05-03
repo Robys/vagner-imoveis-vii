@@ -109,7 +109,7 @@ export default function AddHouse(){
         e.preventDefault()
         const adr = document.getElementById('logradouro').value
         const neig = document.getElementById('bairro').value
-        const cty = document.getElementById('localidade').value
+        //const cty = document.getElementById('localidade').value
 
         setTimeout(()=>{
           
@@ -122,7 +122,7 @@ export default function AddHouse(){
           code:code,
           num:num,
           neighbor:neig,
-          city:cty,
+          city:city,
           postalCode:postalCode,
           finality:finality,
           type:type,

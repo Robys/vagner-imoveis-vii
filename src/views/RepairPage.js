@@ -1,33 +1,9 @@
-import {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
-import {GETHOUSES,SearchFilter} from '../api'
-import {Container,Typography, IconButton,InputBase,Button} from '@material-ui/core'
+import {Container,Typography} from '@material-ui/core'
 
 import Build from '@material-ui/icons/Build'
 
 export default function RepairPage(){
-    const [data,setData] = useState()
-    const [result,setResult] = useState()
-    const [keyword,setKeyword] = useState()
-
-      useEffect(()=>{
-          const getHouses = async () =>{
-              const res = await GETHOUSES()
-              setData(res)
-
-          }
-
-          getHouses()
-      },[])
-
-      const sendKeword = async e =>{
-        e.preventDefault()
-        if(keyword){
-          const res = await SearchFilter(keyword)
-         setResult(res)
-    
-        }
-      }
 
       return (
         <div className="home">

@@ -5,7 +5,7 @@ export default function DetailGallery ({gallery,handleOpen}){
 
     return(
         <GridList cellHeight={120} cols={4}>
-                    
+                    console.log(gallery)
                         {gallery === null ? <p>
                             imagens indisponiveis 
                         </p> : 

@@ -68,6 +68,7 @@ export default function Details (props){
             <Container className="details">
 
             <Modal
+            animation={false}
             open={open}
             onClose={handleClose}
             style={{textAlign:"center"}}

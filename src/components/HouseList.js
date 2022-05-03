@@ -76,7 +76,8 @@ export default function HouseList(){
         },
       }
       const OnSaveEdit = async () =>{
-        await UPDATEHOUSE({
+         await UPDATEHOUSE({
+          id:selectedID,
           address:address,
           code:code,
           num:num,
@@ -92,11 +93,9 @@ export default function HouseList(){
           price:price,
           description:description})
         .then(res => {
-          console.log(res)
           setOk(true)
         })
         .catch(err => console.log(err))
-
       }
 
       const onDeleteButton = async () =>{
@@ -170,7 +169,7 @@ export default function HouseList(){
           
             </DialogContent>
             <DialogActions>
-            <Button variant="contained" color="primary" onClick={e => {
+            <Button variant="contained" color="primary" onClick={() => {
              OnSaveEdit()
               setShow(false)}}>
               
