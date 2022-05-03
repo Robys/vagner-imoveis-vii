@@ -35,7 +35,7 @@ export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
     .catch(err => err)
 
 }
-export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description}){
+export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description,gallery}){
 
     console.log(city)
 
@@ -115,6 +115,7 @@ export const GETHOUSES = async () =>{
                 description
                 hideAddress
                 gallery{
+                    id
                     url
                 }
 
@@ -125,6 +126,7 @@ export const GETHOUSES = async () =>{
 }
 
 export const GETHOUSE = async (id) =>{
+
     return await axios.post(`${DATA_URL}/graphql`,{
         query:`query{
             house(id:"${id}"){
@@ -145,6 +147,7 @@ export const GETHOUSE = async (id) =>{
                 description
                 hideAddress
                 gallery{
+                    id
                     url
                 }
 

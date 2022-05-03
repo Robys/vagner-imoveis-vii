@@ -111,12 +111,12 @@ export default function AddHouse(){
         const neig = document.getElementById('bairro').value
         //const cty = document.getElementById('localidade').value
 
+        const realGallery = await ADDGALLERY(gallery)
+        //console.log(realGallery);
         setTimeout(()=>{
           
-        },1500)
+        },3000)
         
-        const realGallery = await ADDGALLERY(gallery)
-
          await ADDHOUSE({
           address:adr,
           code:code,
@@ -133,7 +133,7 @@ export default function AddHouse(){
           price:price,
           description:description,
           hideAddress:hideaddress,
-        gallery:realGallery.id})
+         gallery:realGallery.id})
         .then(res => {
           setOk(true)
         })
@@ -244,6 +244,7 @@ export default function AddHouse(){
           </form>
 
           <div style={{marginLeft:"20px"}}>
+            <label htmlFor="contained-button-file">
                   <input
         accept="image/*"
         style={{display:"none"}}
@@ -252,7 +253,6 @@ export default function AddHouse(){
         type="file"
         onChange={HandleFilesUpload}
       />
-      <label htmlFor="contained-button-file">
         <Button variant="contained" color="secondary" component="span"  >
           Adicionar Fotos
         </Button>

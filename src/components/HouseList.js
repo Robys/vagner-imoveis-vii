@@ -1,4 +1,6 @@
 import {useState,useEffect} from 'react'
+
+
 import {
     TextField,
     TextareaAutosize,
@@ -19,6 +21,8 @@ import {
 import HouseTable from './HouseTable'
 
 import {GETHOUSES,UPDATEHOUSE,DELETEHOUSE} from '../api'
+
+import SaveGalleryEdit from './SaveGalleryEdit'
 
 export default function HouseList(){
 
@@ -76,7 +80,7 @@ export default function HouseList(){
         },
       }
       const OnSaveEdit = async () =>{
-         await UPDATEHOUSE({
+        await UPDATEHOUSE({
           id:selectedID,
           address:address,
           code:code,
@@ -96,11 +100,15 @@ export default function HouseList(){
           setOk(true)
         })
         .catch(err => console.log(err))
+        
       }
 
       const onDeleteButton = async () =>{
         await DELETEHOUSE(selectedID)
       }
+
+
+      
 
 
 
@@ -168,7 +176,11 @@ export default function HouseList(){
 
           
             </DialogContent>
+            
             <DialogActions>
+
+            <SaveGalleryEdit selectedID={selectedID} />
+
             <Button variant="contained" color="primary" onClick={() => {
              OnSaveEdit()
               setShow(false)}}>

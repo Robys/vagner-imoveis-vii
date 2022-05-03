@@ -11,7 +11,8 @@ export default function House ({house}){
         className="house"
         key={house.id}>
 
-          {house.gallery !== null ? <HouseThumbNail gallery={house.gallery.url}/> 
+        
+          {house.gallery !== null ? <HouseThumbNail gallery={house.gallery}/> 
           : <img src={noPhoto} style={{height:"100%"}}
           alt="foto-da-casa"/>}
 
@@ -33,9 +34,7 @@ export default function House ({house}){
 
 /**
  * <div>
-          {house.gallery !== undefined ? 
-          <img src={house.gallery[0]} style={{height:"280px"}}
-          alt="foto-da-casa"/>
-           :"" }
-           </div>
+          {house.gallery !== null ? <HouseThumbNail gallery={house.gallery.url}/> 
+          : <img src={noPhoto} style={{height:"100%"}}
+          alt="foto-da-casa"/>}
  */
