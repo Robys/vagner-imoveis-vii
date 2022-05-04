@@ -52,7 +52,7 @@ export default function Details (props){
            setData(result.house)
 
            if(result.house.gallery !== null){
-               result.house.gallery.url.map(item =>{
+               result.house.gallery.map(item =>{
                       SetImages(item.split(','))
               })
            }

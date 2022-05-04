@@ -5,7 +5,7 @@ export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
 //export const DATA_URL = "http://localhost:4000/graphql"
 
 export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
-    finality,type,size,rooms,bathroom,parking,price,description,hideAddress,gallery}){
+    finality,type,size,rooms,bathroom,parking,price,description,hideAddress}){
 
    return await axios.post(`${DATA_URL}/graphql`,{
        query:`mutation{
@@ -24,7 +24,6 @@ export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
             size:"${size}",
             description:"${description}",
             hideAddress:"${hideAddress}",
-            gallery:"${gallery}",
          ){
              address
              finality
@@ -35,9 +34,7 @@ export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
     .catch(err => err)
 
 }
-export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description,gallery}){
-
-    console.log(city)
+export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,finality,type,size,rooms,bathroom,parking,price,description}){
 
    return await axios.post(`${DATA_URL}/graphql`,{
        query:`mutation{
@@ -68,17 +65,33 @@ export async function UPDATEHOUSE({id,address,code,num,neighbor,city,postalCode,
     
 }
 
-export async function ADDGALLERY(gallery){
+export async function ADDGALLERY(houseID,gallery){
    return await axios.post(`${DATA_URL}/graphql`,{
         query:`mutation{
-            addGallery(url:"${gallery}"){
-              id
-              url
+            addGallery(houseID:"${houseID}",gallery:"${gallery}"){
+                id
+                address
+                gallery
             }
           }`
     }).then(res => res)
     .catch(err => err)
+    
 }
+
+export async function REMOVEGALLERY(houseID){
+    return await axios.post(`${DATA_URL}/graphql`,{
+         query:`mutation{
+             removeGallery(houseID:"${houseID}"){
+                 id
+                 address
+                 gallery
+             }
+           }`
+     }).then(res => res)
+     .catch(err => err)
+     
+ }
 
 export function DELETEHOUSE(id){
     return axios.post(`${DATA_URL}/graphql`,{
@@ -114,11 +127,7 @@ export const GETHOUSES = async () =>{
                 createdAt
                 description
                 hideAddress
-                gallery{
-                    id
-                    url
-                }
-
+                gallery
             }
         }`
     }).then(res => res.data.data)
@@ -146,10 +155,7 @@ export const GETHOUSE = async (id) =>{
                 createdAt
                 description
                 hideAddress
-                gallery{
-                    id
-                    url
-                }
+                gallery
 
             }
         }`

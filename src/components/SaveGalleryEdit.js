@@ -1,16 +1,28 @@
 import {useState} from 'react'
-import {GETHOUSE,DATA_URL} from '../api'
+import {REMOVEGALLERY,ADDGALLERY} from '../api'
 import axios from 'axios'
 
-import {Button} from '@material-ui/core'
+import {Button,Snackbar} from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert';
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export default function SaveGalleryEdit({selectedID}){
     const [gallery,setGallery] = useState([])
+    const [onLoading,setOnLoading] = useState({loading:true,message:""})
+
+
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+    }
 
     const HandleFilesUpload = e =>{
         e.preventDefault()
-        //setOnLoading({loading:true,message:"enviando imagens..."})
+        setOnLoading({loading:true,message:"enviando imagens..."})
         const files = Object.values(e.target.files)
         files.map(file => {
           // Initial FormData
@@ -28,31 +40,24 @@ export default function SaveGalleryEdit({selectedID}){
           }).then(response => {
             const data = response.data;
             const fileURL = data.secure_url
-            setGallery(prevItens => 
-                [...prevItens, fileURL])
-              updateGallery(gallery)
-
-            }) 
-        });
+                UpdateGallery(fileURL)
+              }) 
+            });
+            
+          }
           
-      }
+          const UpdateGallery = async (url)=>{
+            setTimeout(()=>{ },5000)
+            await ADDGALLERY(selectedID,url)
+            setOnLoading({loading:false,message:"imagens enviadas"})
+        }
 
-        const updateGallery = async (gallery)=>{
-            setTimeout(()=>{ },3000)
-            console.log(gallery)
-            const data = await GETHOUSE(selectedID)
-            return await axios.post(`${DATA_URL}/graphql`,{
-                query:`mutation{
-                    updateGallery(id:"${data.house.gallery.id}",url:"${gallery}"){
-                      id
-                      url
-                    }
-                  }`
-            }).then(res => console.log(res))
-            .catch(err => err)
+        const HandleRemove = async ()=>{
+          await REMOVEGALLERY(selectedID)
         }
 
     return (
+      <>
         <label htmlFor="contained-button-file">
                   <input
                   accept="image/*"
@@ -61,11 +66,27 @@ export default function SaveGalleryEdit({selectedID}){
                   multiple
                   type="file"
                   onChange={HandleFilesUpload}
-                  //onChange={updateGallery}
+                  //onChange={UpdateGallery}
                 />
                   <Button variant="contained" color="primary" component="span"  >
-                    Editar Fotos
+                    +fotos
                   </Button>
             </label>
+
+            <Button onClick={HandleRemove}
+            variant="contained" color="primary" component="span"  >
+                    -fotos
+            </Button>
+
+            {onLoading.loading === false ?
+          <Snackbar open={onLoading.loading } autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success">
+              {onLoading.message}
+            </Alert>
+            </Snackbar>
+
+         :""}
+      
+      </>
     )
 }

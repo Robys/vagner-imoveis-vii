@@ -8,7 +8,7 @@ export default function HouseTable({houses,setShow,setSelectedID}){
 
     return(
         <TableBody>
-        {houses !== null ? houses.map(house => 
+        {houses ? houses.map(house => 
             <TableRow key={house.id}>
                 <TableCell align="center"> 
                 <Button variant="contained" color="primary" onClick={e =>{

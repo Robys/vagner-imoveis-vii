@@ -107,11 +107,6 @@ export default function HouseList(){
         await DELETEHOUSE(selectedID)
       }
 
-
-      
-
-
-
     return (
         <Container>
             <Dialog open={show} onClose={e => setShow(false)} aria-labelledby="form-dialog-title">

@@ -5,11 +5,11 @@ export default function DetailGallery ({gallery,handleOpen}){
 
     return(
         <GridList cellHeight={120} cols={4}>
-                    console.log(gallery)
+                    
                         {gallery === null ? <p>
                             imagens indisponiveis 
                         </p> : 
-                            gallery.url.map(item => {
+                            gallery.map(item => {
                             const links = item.split(',')
                             return links.map(url => 
                                 (<GridListTile key={url} >

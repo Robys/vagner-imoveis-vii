@@ -28,8 +28,6 @@ export default function AddHouse(){
     const [type,setType]=useState()
     const [description,setDescription]=useState()
 
-    const [gallery,setGallery] = useState([])
-
     const [cepres,setCEPRes] = useState() /** resultado da pesquisa por CEP **/
 
     const [ok, setOk] = useState(false);
@@ -73,37 +71,6 @@ export default function AddHouse(){
         },
       }
 
-      const HandleFilesUpload = e =>{
-        e.preventDefault()
-        setOnLoading({loading:true,message:"enviando imagens..."})
-        const files = Object.values(e.target.files)
-        files.map(file => {
-          // Initial FormData
-          const formData = new FormData();
-          formData.append("file", file);
-          //formData.append("tags", `dahwijw8w, medium, gist`);
-          formData.append("upload_preset", "uv4ucb9s"); // Replace the preset name with your own
-          formData.append("api_key", "316375736115726"); // Replace API key with your own Cloudinary key
-         // formData.append("signature", "UyTJCwsJ89rr1ajiPEvWIvz3egc");
-          formData.append("timestamp", (Date.now() / 1000) | 0);
-      
-          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
-          return axios.post("https://api.cloudinary.com/v1_1/dahwijw8w/image/upload", formData, {
-            headers: { "X-Requested-With": "XMLHttpRequest" },
-          }).then(response => {
-            const data = response.data;
-            const fileURL = data.secure_url // You should store this URL for future references in your app
-            setGallery(prevItens => 
-              [...prevItens, fileURL])
-
-              setOnLoading({loading:false,message:""})
-              
-            })
-            
-            
-          });
-          
-      }
 
       const SubmitForm = async (e) =>{
         e.preventDefault()
@@ -111,8 +78,6 @@ export default function AddHouse(){
         const neig = document.getElementById('bairro').value
         //const cty = document.getElementById('localidade').value
 
-        const realGallery = await ADDGALLERY(gallery)
-        //console.log(realGallery);
         setTimeout(()=>{
           
         },3000)
@@ -132,8 +97,7 @@ export default function AddHouse(){
           parking:parking,
           price:price,
           description:description,
-          hideAddress:hideaddress,
-         gallery:realGallery.id})
+          hideAddress:hideaddress})
         .then(res => {
           setOk(true)
         })
@@ -237,32 +201,16 @@ export default function AddHouse(){
 
         </Grid>
 
-
-
-
-
-          </form>
-
           <div style={{marginLeft:"20px"}}>
-            <label htmlFor="contained-button-file">
-                  <input
-        accept="image/*"
-        style={{display:"none"}}
-        id="contained-button-file"
-        multiple
-        type="file"
-        onChange={HandleFilesUpload}
-      />
-        <Button variant="contained" color="secondary" component="span"  >
-          Adicionar Fotos
-        </Button>
-      </label>
 
           <Button variant="contained" color="primary" 
           style={Styles.submit} onClick={SubmitForm}>Salvar</Button>
 
 
           </div>
+          
+          </form>
+
 
           {ok ?
           <Snackbar open={ok} autoHideDuration={6000} onClose={handleClose}>

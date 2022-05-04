@@ -13,8 +13,8 @@ function App() {
     <div className="App">
       <TopBar/>
       <BrowserRouter>
-      <Route exact path="/" component={RepairPage}/>
-      <Route exact path="/home" component={Home}/>
+      <Route exact path="/repair" component={RepairPage}/>
+      <Route exact path="/" component={Home}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/adm" component={Admin}/>
       <Route exact path="/sobre" component={About}/>
