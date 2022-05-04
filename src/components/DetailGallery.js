@@ -4,7 +4,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 export default function DetailGallery ({gallery,handleOpen}){
 
     return(
-        <GridList cellHeight={120} cols={4}>
+        <GridList cellHeight={100} cols={6}>
                     
                         {gallery === null ? <p>
                             imagens indisponiveis 

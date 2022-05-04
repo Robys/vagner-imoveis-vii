@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {Container,Paper, Typography,Button,IconButton,Modal} from '@material-ui/core'
+import {Container,Grid,Paper, Typography,Button,IconButton,Modal} from '@material-ui/core'
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -111,52 +111,54 @@ export default function Details (props){
 
                    <div className="detail-info">
 
-                        <p><DialpadIcon fontSize="small"/> Código: {data.code}</p>
+                        <p><DialpadIcon fontSize="small"/> Código: 
+                        <strong> {data.code.toUpperCase()} 
+                        </strong></p>
 
                         {data.hideAddress ? 
                         <div>
                         <Typography variant="p">
-                            {data.neighbor} {data.city}
+                         Bairro: {data.neighbor} {data.city}
                         </Typography>
 
                         </div>
                         :
                         <div>
-                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address}</p> 
+                        <p><LocationOnIcon fontSize="small"/> Endereço: {data.address} {data.number}</p> 
 
                         <Typography variant="p">
-                            {data.neighbor} {data.city}
+                        Bairro: {data.neighbor} {data.city}
                         </Typography>
 
                         </div>
                         }
                         
-                        
-                        
-                        <ul className="detail-list">
-                            <li>
+                        <Grid container  className="detail-list" rowSpacing={2}>
+                        <Grid item >
                             <p><HomeWorkIcon fontSize="small"/> Tipo: {data.type}</p>
-                            </li>
-                            <li>
+                        </Grid>
+                        <Grid item style={{marginLeft:"20px"}} >
                             <p><AspectRatioIcon fontSize="small"/> Metragem: {data.size}</p>
-                            </li>
-                            <li>
+                        </Grid>
+                        <Grid item style={{marginLeft:"20px"}} >
                             <p> <MeetingRoomIcon fontSize="small"/> Quartos: {data.rooms}</p>
-                            </li>
-                            <li>
+                        </Grid>
+                        <Grid item style={{marginLeft:"20px"}} >
                             <p><DriveEtaIcon fontSize="small"/> Vagas: {data.parking}</p>
-                            </li>
-                            
+                        </Grid>
 
-                        </ul>
-                        
-                        <p><DescriptionIcon fontSize="small"/> {data.description}</p>
+                        </Grid>
+                            
+                        <Paper variant="outlined" 
+                        style={{height:"120px",padding:"5px",marginBottom:"10px", backgroundColor:"#cfd8dc"}}>
+                            <p><DescriptionIcon fontSize="small"/> {data.description}</p>
+                        </Paper>
                         
                         <Typography variant="h4">
                             R$  {data.price}.000
                         </Typography>
 
-                        <Button variant="contained" color="primary" href="/contact">
+                        <Button variant="contained" color="primary" href="/contato">
                             Consultar
                         </Button>
                    </div>

@@ -7,7 +7,8 @@ import HouseThumbNail from './HouseThumbNail';
 export default function House ({house}){
     
     return (
-        <Paper 
+        <Paper
+        elevation={4} 
         className="house"
         key={house.id}>
 

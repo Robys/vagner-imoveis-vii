@@ -202,7 +202,6 @@ export default function HouseList(){
             <TableHead>
           <TableRow>
                     <TableCell align="center"> - </TableCell>
-                    <TableCell align="center">ID</TableCell>
                     <TableCell align="center">Código</TableCell>
                     <TableCell align="center">Tipo</TableCell>
                     <TableCell align="center">Finalidade</TableCell>
@@ -210,6 +209,7 @@ export default function HouseList(){
                     <TableCell align="center">Bairro</TableCell>
                     <TableCell align="center">Cidade</TableCell>
                     <TableCell align="center">Metragem</TableCell>
+                    <TableCell align="center">Comodos</TableCell>
                     <TableCell align="center">Preço</TableCell>
           </TableRow>
             </TableHead>

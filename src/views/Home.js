@@ -111,7 +111,7 @@ export default function Home(){
               </ul>
             </div>
 
-            <Paper component="form" className="search">
+            <Paper component="form" className="search" elevation={8}>
             <InputBase className="search-input"
             onChange={e => setKeyword(e.target.value)}
             placeholder="Pesquisar"
