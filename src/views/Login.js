@@ -1,13 +1,29 @@
 import {useState} from 'react'
 import {Redirect} from 'react-router-dom'
-import {Container,Paper,TextField,Button} from '@material-ui/core'
+import {LOGIN} from '../api'
+import {Container,Paper,TextField,Button,Snackbar} from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert';
 //import axios from 'axios'
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export default function Login (){
     const [email,setEmail] = useState()
     const [password,setPassword] = useState()
     const [ready,setReady] = useState(false)
-    const [error,setError] = useState()
+    const [error,setError] = useState({onError:false,message:""})
+
+    
+
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setError({onError:false,message:""});
+    };
 
     const Styles ={
         paper: {
@@ -29,8 +45,16 @@ export default function Login (){
         },
       }
 
-    const login = (email,password) =>{
-        setReady(true);
+    const login = async (email,password) =>{
+      const res = await LOGIN(email,password)
+        if(res.data !== null){
+          if(res.data.login === "usuário autorizado, bem vindo"){
+            setReady(true)
+          }
+          else{
+            setError({onError:true,message:res.data.login})
+          }
+        }
     }
 
     return (
@@ -52,12 +76,16 @@ export default function Login (){
 
             </form>
 
-            {error?
-            <p style={{color:"red"}}>{error.message}</p>
-            :ready===true ? <Redirect to='/adm'/> : "" }
 
 
             </Paper>
+              <Snackbar open={error.onError} autoHideDuration={6000} onClose={handleClose}>
+                      <Alert onClose={handleClose} severity="warning">
+                        {error.message}
+                      </Alert>
+              </Snackbar>
+
+            {ready ? <Redirect to="/adm"/> : ""}
 
         </Container>
     )

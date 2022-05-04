@@ -4,6 +4,16 @@ import {compareTwoStrings} from 'string-similarity'
 export const DATA_URL = "https://vagner-imoveis-backend.herokuapp.com"
 //export const DATA_URL = "http://localhost:4000/graphql"
 
+
+export async function LOGIN(email,password){
+    return await axios.post(`${DATA_URL}/graphql`,{
+        query:`mutation{
+            login(email:"${email}",password:"${password}")
+          }`
+    }).then(res => res.data)
+    .catch(err => err)
+}
+
 export async function ADDHOUSE({address,code,num,neighbor,city,postalCode,
     finality,type,size,rooms,bathroom,parking,price,description,hideAddress}){
 
