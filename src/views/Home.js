@@ -62,7 +62,7 @@ export default function Home(){
                 </li>
                 <li>
                   <Button onClick={async () =>{
-                    const res = await SortContruction('Casa')
+                    const res = await SortContruction('casa')
                     console.log(res)
                     setResult(res)
                   }}
@@ -72,7 +72,7 @@ export default function Home(){
                 </li>
                 <li>
                   <Button onClick={async () =>{
-                    const res = await SortContruction('Apartamento')
+                    const res = await SortContruction('apartamento')
                     setResult(res)
                   }}
                   variant="contained" color="secondary">
@@ -81,7 +81,7 @@ export default function Home(){
                 </li>
                 <li>
                   <Button onClick={async () =>{
-                    const res = await SortContruction('Empreendimento')
+                    const res = await SortContruction('outro')
                     setResult(res)
                   }}
                   variant="contained" color="secondary" >
@@ -91,7 +91,7 @@ export default function Home(){
 
                 <li>
                   <Button onClick={async () =>{
-                    const res = await SortType('Venda')
+                    const res = await SortType('venda')
                     setResult(res)
                   }}
                   variant="contained" color="secondary">
@@ -100,7 +100,7 @@ export default function Home(){
                 </li>
                 <li>
                   <Button onClick={async () =>{
-                    const res = await SortType('Aluguel')
+                    const res = await SortType('aluguel')
                     setResult(res)
                   }}
                   variant="contained" color="secondary">

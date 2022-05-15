@@ -236,25 +236,62 @@ export const SortFunction = async (type) =>{
 }
 
 export const SortContruction = async (keyword)=>{
-    const data = await GETHOUSES()
-    .then(res => res.data)
+    
+    return await axios.post(`${DATA_URL}/graphql`,{
+        query:`query{
+            type(keyword:"${keyword}"){
+                id
+                code
+                type
+                price
+                finality
+                address
+                city
+                neighbor
+                postalCode
+                parking
+                bathroom
+                rooms
+                size
+                createdAt
+                description
+                hideAddress
+                gallery
+
+            }
+        }`
+    }).then(res => res.data.data.type)
     .catch(err => err)
-
-    const result = data.filter(houses => houses.construction === keyword)
-
-    return result
 
 }
 
 export const SortType = async (keyword)=>{
 
-    const data = await GETHOUSES()
-    .then(res => res.houses)
+    return await axios.post(`${DATA_URL}/graphql`,{
+        query:`query{
+            finality(keyword:"${keyword}"){
+                id
+                code
+                type
+                price
+                finality
+                address
+                city
+                neighbor
+                postalCode
+                parking
+                bathroom
+                rooms
+                size
+                createdAt
+                description
+                hideAddress
+                gallery
+
+            }
+        }`
+    }).then(res => res.data.data.finality)
     .catch(err => err)
-
-    const result = data.filter(houses => houses.type === keyword)
-
-    return result
 
 
 } 
